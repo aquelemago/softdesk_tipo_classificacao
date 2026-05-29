@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Chamados - Softdesk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Monitor de Chamados</h1>
+    <div class="actions">
+      <button id="run-main">▶️ Executar Classificação</button>
+      <button id="clear-logs">🗑️ Limpar Logs</button>
+    </div>
+    <div class="limit-input">
+      <label for="limit">📊 Limite de chamados:</label>
+      <input type="number" id="limit" min="1" max="200" value="50" />
+    </div>
+    <div id="log-container" class="log-container"></div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <span class="spinner"></span>
+    Processando...
+  </div>
+
+  <!-- Status Indicator -->
+  <div class="status-indicator" id="status-indicator">
+    <span id="status-text">Sistema ocioso</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html> 

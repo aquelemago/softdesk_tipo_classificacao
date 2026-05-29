@@ -1,0 +1,6 @@
+node_modules/
+.env
+logs/
+Y/
+.agents/
+skills-lock.json
