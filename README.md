@@ -44,6 +44,8 @@ Variaveis principais:
 
 - `OPENAI_API_KEY`: chave OpenAI.
 - `GOOGLE_API_KEY` ou `GEMINI_API_KEY`: chave Google Gemini, se `CLASSIFICADOR_PROVIDER=google` ou `gemini`.
+- `GOOGLE_GEMINI_RPM=10` e `GOOGLE_GEMINI_RPD=20`: limites locais para evitar `429 Too Many Requests` do Gemini.
+- `GOOGLE_GEMINI_MIN_INTERVAL_MS`, `GOOGLE_GEMINI_MAX_RETRIES` e `GOOGLE_GEMINI_QUOTA_FILE`: ajuste fino da protecao local Gemini.
 - `CLASSIFICADOR_PROVIDER`: `openai`, `google` ou `gemini`.
 - `DRY_RUN`: use `true` para calcular sem enviar `PUT` ao Softdesk.
 - `AUTO_SCHEDULE_ENABLED`: use `false` para desabilitar cron.

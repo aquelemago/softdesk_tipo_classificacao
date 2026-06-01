@@ -5,17 +5,35 @@ const { buscarDetalhesChamado } = require('./src/test-retorna-ultimos-chamados-a
 const { log, stripHtml } = require('./utils/logger');
 const classificarChamadoOpenAI = require('./utils/classificador_openai');
 const { montarPayloadAtualizacao } = require('./utils/classificador_openai');
+const { resolverLimiteGeminiRpd } = require('./utils/classificador_openai');
 const editarChamado = require('./src/editarChamado');
 
-const contexto = 'VocÃª Ã© um analista de suporte que irÃ¡ classificar chamados de acordo com tipo e prioridade.';
+const contexto = 'Voce e um analista de suporte que ira classificar chamados de acordo com tipo e prioridade.';
 
 const DRY_RUN = process.env.DRY_RUN === 'true';
 const CLASSIFICADOR_PROVIDER = process.env.CLASSIFICADOR_PROVIDER || 'openai';
 
+function resolverLimiteExecucao() {
+  const limiteSolicitado = parseInt(process.argv[2], 10) || 50;
+  const provider = String(CLASSIFICADOR_PROVIDER).toLowerCase();
+
+  if (provider !== 'google' && provider !== 'gemini') {
+    return limiteSolicitado;
+  }
+
+  const limiteDiarioGemini = resolverLimiteGeminiRpd();
+  if (limiteDiarioGemini <= 0) {
+    return limiteSolicitado;
+  }
+
+  return Math.min(limiteSolicitado, limiteDiarioGemini);
+}
+
 async function main() {
-  const limit = parseInt(process.argv[2], 10) || 50;
+  const limit = resolverLimiteExecucao();
   log('='.repeat(80));
-  log('ðŸš€ Iniciando processamento dos chamados...');
+  log('[INICIO] Iniciando processamento dos chamados...');
+  log(`Limite desta execucao: ${limit}`);
   const chamados = await getChamadosAbertos(limit);
   log(`Total de chamados para classificar: ${chamados.length}`);
   
@@ -23,7 +41,7 @@ async function main() {
     try {
       let bloco = '';
       
-      // Delay entre requisiÃ§Ãµes para evitar rate limiting
+      // Delay entre requisicoes para evitar rate limiting.
       await new Promise(resolve => setTimeout(resolve, 1000)); // 1 segundo de delay
       
       // Detalhamento do chamado
@@ -33,7 +51,7 @@ async function main() {
       }
       const obj = detalhesRetorno;
       
-      // ClassificaÃ§Ã£o via OpenAI
+      // Classificacao via IA.
       log(`Classificando chamado ${obj.codigo} via ${CLASSIFICADOR_PROVIDER}...`);
       const classificacao = await classificarChamadoOpenAI({
         codigo: obj.codigo,
@@ -45,18 +63,18 @@ async function main() {
         contexto
       });
       
-      bloco += `ðŸ¤– ClassificaÃ§Ã£o IA para chamado ${obj.codigo}:\n    TÃ­tulo: ${obj.titulo}\n    Tipo sugerido: ${classificacao.tipo} - ${classificacao.tipoDescricao}\n    Prioridade sugerida: ${classificacao.prioridade} - ${classificacao.prioridadeDescricao}\n`;
+      bloco += `[IA] Classificacao IA para chamado ${obj.codigo}:\n    Titulo: ${obj.titulo}\n    Tipo sugerido: ${classificacao.tipo} - ${classificacao.tipoDescricao}\n    Prioridade sugerida: ${classificacao.prioridade} - ${classificacao.prioridadeDescricao}\n`;
       
       // Editar o chamado com o tipo e prioridade classificados
-      log(`ðŸ“ Editando chamado ${obj.codigo} com tipo ${classificacao.tipo} e prioridade ${classificacao.prioridade}...`);
+      log(`[SOFTDESK] Editando chamado ${obj.codigo} com tipo ${classificacao.tipo} e prioridade ${classificacao.prioridade}...`);
       const payload = montarPayloadAtualizacao(obj.codigo, classificacao);
       
       if (DRY_RUN) {
         bloco += `DRY_RUN ativo: chamado ${obj.codigo} nao foi atualizado no Softdesk. Payload validado: tipo ${payload.tipo_chamado.codigo}, prioridade ${payload.prioridade.codigo}\n`;
       } else {
         const editRes = await editarChamado(payload);
-      bloco += `ðŸ“ Resultado ediÃ§Ã£o chamado: Status ${editRes.status} - ${editRes.data?.mensagem || ''}\n`;
-      bloco += 'âœ… Processo concluÃ­do para este chamado.\n';
+        bloco += `[SOFTDESK] Resultado edicao chamado: Status ${editRes.status} - ${editRes.data?.mensagem || ''}\n`;
+        bloco += '[OK] Processo concluido para este chamado.\n';
       
       }
       
@@ -66,12 +84,12 @@ async function main() {
       
     } catch (err) {
       log('-'.repeat(80));
-      log('âŒ Erro ao processar chamado: ' + err, 'error');
+      log('[ERRO] Erro ao processar chamado: ' + err, 'error');
       log('-'.repeat(80));
     }
   }
   
-  log('ðŸ Processamento finalizado.');
+  log('[FIM] Processamento finalizado.');
   log('='.repeat(80));
 }
 

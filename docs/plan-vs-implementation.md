@@ -19,6 +19,7 @@ A pasta `planos/` descreve uma investigacao anterior e um plano de correcao para
 | Validar taxonomia com suporte | Nao ha evidencia no codigo. | precisa_validacao |
 | Remover segredos hardcoded | `ecosystem.config.js` nao contem mais chave real; `hash-api` vem de `SOFTDESK_HASH_API`. | implementado |
 | Configurar `.env` para Softdesk | `src/softdeskConfig.js` usa `SOFTDESK_HASH_API` e `SOFTDESK_API_BASE_URL`. | implementado |
+| Mitigar rate limit Gemini | `utils/classificador_openai.js` espacou chamadas Gemini e adicionou retry/backoff para `429` e `5xx`. | implementado |
 | Proteger endpoints internos | Sem autenticacao identificada. | ausente |
 | Corrigir divergencia cron 1h vs 15min | Codigo ainda agenda 15min e mensagens dizem 1h. | divergente |
 | Consultar `ctx7old` para libs | Nao foi necessario para documentar comportamento local. | nao_aplicado |
@@ -27,6 +28,7 @@ A pasta `planos/` descreve uma investigacao anterior e um plano de correcao para
 
 - Suporte a Google Gemini como provider alternativo.
 - `OPENAI_MODEL` e `GOOGLE_GEMINI_MODEL`.
+- `GOOGLE_GEMINI_RPM`, `GOOGLE_GEMINI_RPD`, `GOOGLE_GEMINI_MIN_INTERVAL_MS`, `GOOGLE_GEMINI_QUOTA_FILE`, `GOOGLE_GEMINI_MAX_RETRIES`, `GOOGLE_GEMINI_BACKOFF_BASE_MS` e `GOOGLE_GEMINI_BACKOFF_MAX_MS`.
 - Testes de provider Gemini.
 
 ## Divergencias principais

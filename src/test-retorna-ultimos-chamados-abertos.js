@@ -80,14 +80,14 @@ async function getChamadosAbertos(limit = 50) {
         adicionarChamado(chamados, data.objeto);
       }
 
-      log('Teste de sucesso passou!', 'success');
+      log(`Consulta de chamados concluida: ${chamados.length} chamado(s) retornado(s).`, 'success');
     } else if (response.status === 404) {
       log('Nenhum chamado encontrado.', 'warn');
     } else {
-      log('Teste retornou resposta inesperada.', 'warn');
+      log('Consulta de chamados retornou resposta inesperada.', 'warn');
     }
   } catch (error) {
-    log(`Erro ao testar endpoint: ${error}`, 'error');
+    log(`Erro ao consultar chamados abertos: ${error}`, 'error');
   }
 
   return chamados;

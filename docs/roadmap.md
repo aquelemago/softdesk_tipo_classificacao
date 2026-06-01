@@ -8,6 +8,7 @@
 4. Validar taxonomia com suporte usando exemplos anonimizados.
 5. Adicionar autenticacao ou restricao de acesso a `/run-main` e `/clear-logs`.
 6. Criar politica operacional para quando cron deve ficar ligado.
+7. Monitorar chamadas Gemini feitas fora deste projeto, pois elas tambem consomem a quota real do Google e nao entram no contador local.
 
 ## Nao fazer sem autorizacao
 
