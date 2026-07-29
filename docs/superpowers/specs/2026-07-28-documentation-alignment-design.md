@@ -1,7 +1,12 @@
 # Alinhamento e reorganizacao da documentacao
 
 **Data:** 2026-07-28  
-**Status:** Aprovado para especificacao; aguardando revisao do usuario antes da implementacao
+**Status:** Aprovado; implementacao em curso
+
+## Contexto de execucao
+
+- Stack verificada: Node.js (CommonJS) com `node:test`. Nao ha `app/`, `requirements.txt` ou `tests/run_unittest_discovery.py`. As validacoes `python -m compileall app tests` e `python tests/run_unittest_discovery.py` solicitadas serao executadas literalmente para registrar o resultado real; a validacao efetiva do projeto e `npm test`.
+- Comando de teste verificado em `package.json`: `node --test tests/*.test.js`.
 
 ## Objetivo
 
@@ -51,9 +56,10 @@ As afirmacoes da documentacao serao verificadas em `main.js`, `server.js`, `src/
 ## Validacao
 
 1. Revisar links e nomes da nova estrutura.
-2. Executar `python -m compileall app tests` e registrar o resultado real.
-3. Executar `python tests/run_unittest_discovery.py` e registrar o resultado real.
-4. Confirmar com `git status` que o conjunto de alteracoes e somente o pretendido antes do commit final e push.
+2. Executar `python -m compileall app tests` e registrar o resultado real (esperado: falha por nao existir `app/`; projeto e Node.js).
+3. Executar `python tests/run_unittest_discovery.py` e registrar o resultado real (esperado: falha por nao existir o arquivo; projeto usa `node --test`).
+4. Executar `npm test` como validacao real do projeto Node.
+5. Confirmar com `git status` que o conjunto de alteracoes e somente o pretendido antes do commit final e push.
 
 ## Decisoes
 
