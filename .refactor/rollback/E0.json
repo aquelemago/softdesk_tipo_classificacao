@@ -1,0 +1,8 @@
+﻿{
+  "stageId": "E0",
+  "previousSha": "6335291f6bb2d4412cc00c4c39b52df287af9e7a",
+  "commitSha": null,
+  "createdAt": "2026-08-04T15:29:41Z",
+  "files": [],
+  "note": "Anchor commit. previousSha aponta para o ultimo commit antes da infraestrutura .refactor/ entrar no Git."
+}

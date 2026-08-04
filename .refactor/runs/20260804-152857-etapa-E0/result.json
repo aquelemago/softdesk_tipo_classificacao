@@ -1,0 +1,11 @@
+﻿{
+  "stageId": "E0",
+  "validations": [
+    {"name": "git-status", "passed": true, "result": "untracked: .refactor/"},
+    {"name": "deps-satisfied", "passed": true, "result": "E0 has no deps"},
+    {"name": "skills-loaded", "passed": true, "skills": ["git-status","test-runner","progress-update"]}
+  ],
+  "tests": [
+    {"name": "npm test", "status": "pass", "exit": 0, "passed": 16, "failed": 0, "durationMs": 476}
+  ]
+}

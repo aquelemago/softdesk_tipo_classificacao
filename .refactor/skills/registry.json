@@ -1,0 +1,51 @@
+﻿{
+    "version":  1,
+    "updatedAt":  "2026-08-04T15:26:00Z",
+    "skills":  {
+                   "test-runner":  {
+                                       "id":  "test-runner",
+                                       "version":  "1.0.0",
+                                       "path":  "skills/test-runner/SKILL.md",
+                                       "hash":  "9722be1e5b816cba706b64c328850120f08798a521f3f1f2f795451849a09f5e",
+                                       "createdAt":  null,
+                                       "lastUsedAt":  null,
+                                       "usageCount":  0
+                                   },
+                   "git-status":  {
+                                      "id":  "git-status",
+                                      "version":  "1.0.0",
+                                      "path":  "skills/git-status/SKILL.md",
+                                      "hash":  "8b95a9098a9d8dca9f2337d24f9e30381f8f6cb0dcd78d43880c84f1e665170e",
+                                      "createdAt":  null,
+                                      "lastUsedAt":  null,
+                                      "usageCount":  0
+                                  },
+                   "git-diff":  {
+                                    "id":  "git-diff",
+                                    "version":  "1.0.0",
+                                    "path":  "skills/git-diff/SKILL.md",
+                                    "hash":  "900320c203e81a2c9929fc9804cc365b864c151dfa464b954297ca656e6ad3db",
+                                    "createdAt":  null,
+                                    "lastUsedAt":  null,
+                                    "usageCount":  0
+                                },
+                   "commit-manager":  {
+                                          "id":  "commit-manager",
+                                          "version":  "1.0.0",
+                                          "path":  "skills/commit-manager/SKILL.md",
+                                          "hash":  "9d2b9885edbd359fbaf69de3caade0b22703008a2a7bed91b3b1571d478ef154",
+                                          "createdAt":  null,
+                                          "lastUsedAt":  null,
+                                          "usageCount":  0
+                                      },
+                   "progress-update":  {
+                                           "id":  "progress-update",
+                                           "version":  "1.0.0",
+                                           "path":  "skills/progress-update/SKILL.md",
+                                           "hash":  "68b6d08551cd376981fad2db5663b7e8c01e40f54e181ec2d637205b0467f262",
+                                           "createdAt":  null,
+                                           "lastUsedAt":  null,
+                                           "usageCount":  0
+                                       }
+               }
+}

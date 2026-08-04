@@ -1,0 +1,60 @@
+﻿{
+    "version":  1,
+    "schemaVersion":  "1.0.0",
+    "project":  {
+                    "name":  "softdesk_tipo_classificacao",
+                    "rootPath":  ".",
+                    "baselineCommit":  null,
+                    "planRef":  ".refactor/plan/01-etapas.json",
+                    "planHash":  "67c843aa5e3876221691b1e57fdf119484ff98f540e06d0c01dd965c28652e4b"
+                },
+    "currentPhase":  "preparation",
+    "currentStageId":  "E0",
+    "nextStageId":  "E0",
+    "stages":  {
+                   "E0":  {
+                              "status":  "in_progress",
+                              "startedAt":  "2026-08-04T15:28:11Z"
+                          },
+                   "E1":  {
+                              "status":  "pending"
+                          },
+                   "E2":  {
+                              "status":  "pending"
+                          },
+                   "E3":  {
+                              "status":  "pending"
+                          },
+                   "E4":  {
+                              "status":  "pending"
+                          },
+                   "E5":  {
+                              "status":  "pending"
+                          },
+                   "E6":  {
+                              "status":  "pending"
+                          },
+                   "E7":  {
+                              "status":  "pending"
+                          },
+                   "E8":  {
+                              "status":  "pending"
+                          }
+               },
+    "history":  [
+
+                ],
+    "lastRun":  {
+                    "startedAt":  "2026-08-04T15:28:11Z",
+                    "finishedAt":  null,
+                    "outcome":  null,
+                    "runDir":  ".refactor/runs/20260804-152811-etapa-E0"
+                },
+    "skillsRegistryVersion":  null,
+    "globalErrors":  [
+
+                     ],
+    "observations":  [
+
+                     ]
+}

@@ -1,0 +1,275 @@
+﻿{
+  "version": 1,
+  "planHash": "pending-after-E0",
+  "stages": [
+    {
+      "id": "E0",
+      "name": "Anchor baseline",
+      "objective": "Estabelecer baseline verde e registrar o commit SHA no progress.json. Nenhuma alteracao de codigo.",
+      "phase": "preparation",
+      "filesInvolved": [],
+      "deps": [],
+      "risks": [],
+      "completionCriteria": [
+        "git status limpo (working tree clean)",
+        "npm test passa",
+        "baselineCommit registrado em progress.json",
+        "planHash recalculado e gravado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": ["git-status", "test-runner", "progress-update"],
+      "rollbackStrategy": "none (anchor)",
+      "atomic": true
+    },
+    {
+      "id": "E1",
+      "name": "Reorganizar scripts operacionais (src/test-*.js) e criar scripts/",
+      "objective": "Eliminar o prefixo enganador test- em arquivos que nao sao testes, separar scripts CLI de modulos e mover o modulo usado por main.js para um nome claro sem o prefixo.",
+      "phase": "restructure",
+      "filesInvolved": [
+        "src/test-listar-prioridades.js",
+        "src/test-retorna-chamados-sem-tipo.js",
+        "src/test-retorna-ultimos-chamados-abertos.js",
+        "main.js",
+        "codex-context/06-inventory.md",
+        "codex-context/02-architecture.md"
+      ],
+      "deps": ["E0"],
+      "risks": [
+        "main.js importa de src/test-retorna-ultimos-chamados-abertos.js em duas linhas (1 e 4); esquecer de atualizar uma delas quebra o pipeline",
+        "codex-context/02-architecture.md referencia linhas do arquivo antigo; se nao atualizado, docs ficam inconsistentes"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "Nenhum arquivo em src/ comeca com test-",
+        "Diretorio scripts/ existe com os scripts CLI movidos",
+        "main.js importa de src/softdesk/retornaChamadosAbertos.js (ou equivalente definido no plano da etapa)",
+        "git status apenas com arquivos listados em filesInvolved",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": [
+        "file-move", "file-rename", "import-update", "find-references",
+        "doc-sync", "git-status", "git-diff", "test-runner",
+        "commit-manager", "progress-update"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E2",
+      "name": "Padronizar gateways Softdesk e compartilhar mensagemSucesso",
+      "objective": "Padronizar o contrato de retorno dos gateways Softdesk e extrair a funcao mensagemSucesso para um unico modulo reusado por todas os gateways.",
+      "phase": "restructure",
+      "filesInvolved": [
+        "src/softdeskConfig.js", "src/editarChamado.js", "src/listarTiposChamado.js",
+        "src/retornaChamadosAbertos.js", "scripts/listarPrioridades.js",
+        "scripts/retornaChamadosSemTipo.js", "main.js",
+        "codex-context/06-inventory.md", "codex-context/02-architecture.md"
+      ],
+      "deps": ["E0", "E1"],
+      "risks": [
+        "Mudar assinatura publica de getChamadosAbertos/buscarDetalhesChamado pode quebrar main.js"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "mensagemSucesso definida em um unico modulo",
+        "Todos os gateways importam mensagemSucesso do mesmo lugar",
+        "Assinaturas publicas de getChamadosAbertos e buscarDetalhesChamado inalteradas",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": [
+        "file-write", "file-move", "import-update", "find-references",
+        "validate-imports", "validate-structure", "git-status", "git-diff",
+        "test-runner", "commit-manager", "progress-update", "doc-sync"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E3",
+      "name": "Unificar stripHtml (logger vs classificador)",
+      "objective": "Substituir as duas implementacoes de stripHtml por uma unica versao canonica em src/utils/texto.js.",
+      "phase": "restructure",
+      "filesInvolved": [
+        "utils/logger.js", "utils/classificador_openai.js",
+        "main.js", "src/utils/texto.js"
+      ],
+      "deps": ["E0", "E1"],
+      "risks": [
+        "Output de stripHtml (logger, regex simples) vs stripHtmlSeguro (classificador, com script/style/entities) pode divergir em descricoes com HTML rico",
+        "Mudanca do input enviado ao LLM pode afetar a classificacao"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "Diff de corpus (>=20 chamados em DRY_RUN) sem mudanca de classificacao",
+        "Nenhum require('../utils/logger').stripHtml remanescente",
+        "Nenhum stripHtmlSeguro duplicado (uma unica definicao)",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test", "dry-run-corpus-diff"],
+      "requiredSkills": [
+        "file-read", "file-write", "text-diff", "strip-html-compare",
+        "dry-run-runner", "import-update", "find-references", "validate-imports",
+        "git-status", "git-diff", "test-runner", "commit-manager",
+        "progress-update", "doc-sync"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E4",
+      "name": "Quebrar utils/classificador_openai.js em modulos coesos",
+      "objective": "Extrair constantes, parser, mapeamento, prompt e os dois providers (OpenAI e Gemini) para arquivos individuais sob src/classificacao/, preservando a API publica via facade em utils/classificador_openai.js.",
+      "phase": "restructure",
+      "filesInvolved": [
+        "utils/classificador_openai.js",
+        "src/classificacao/constantes.js",
+        "src/classificacao/parser.js",
+        "src/classificacao/mapeamento.js",
+        "src/classificacao/prompt.js",
+        "src/classificacao/providers/openai.js",
+        "src/classificacao/providers/gemini.js",
+        "src/classificacao/classificar.js",
+        "tests/classificador_openai.test.js",
+        "main.js",
+        "codex-context/06-inventory.md",
+        "codex-context/02-architecture.md"
+      ],
+      "deps": ["E0", "E1", "E2"],
+      "risks": [
+        "tests/classificador_openai.test.js importa varios exports nomeados do classificador_openai.js; a facade precisa reexportar todos",
+        "Caminho do quota file Gemini (runtime/gemini-quota-usage.json) dependia de __dirname do arquivo antigo; mudanca de path relativo pode quebrar quota",
+        "Gemini tem retry/backoff com estado global (filaGemini, filaQuotaGemini); mover pode afetar comportamento se duas instancias coexistirem"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "utils/classificador_openai.js reduz a facade (apenas reexports)",
+        "Tests continuam passando sem modificacao de assertions",
+        "Quota file continua em runtime/gemini-quota-usage.json",
+        "Nenhum require direto aos novos modulos vindo de fora de tests/ (exceto da propria facade)",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": [
+        "file-read", "file-write", "extract-function", "reexport-facade",
+        "import-update", "find-references", "validate-imports", "validate-structure",
+        "git-status", "git-diff", "test-runner", "commit-manager",
+        "progress-update", "doc-sync"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true,
+      "subStages": ["E4a", "E4b", "E4c", "E4d", "E4e", "E4f", "E4g"]
+    },
+    {
+      "id": "E5",
+      "name": "Decompor server.js em server/ (mantendo entrypoint)",
+      "objective": "Extrair de server.js as responsabilidades de logBroadcaster, httpEndpoints e cron para arquivos em server/, mantendo server.js como entrypoint de boot que reimporta as partes. Nao mover server.js para nao quebrar package.json, ecosystem.config.js e docs NSSM.",
+      "phase": "restructure",
+      "filesInvolved": [
+        "server.js", "server/logBroadcaster.js", "server/httpEndpoints.js",
+        "server/cron.js", "codex-context/06-inventory.md", "codex-context/02-architecture.md"
+      ],
+      "deps": ["E0", "E1", "E2", "E3", "E4"],
+      "risks": [
+        "Cron e log watcher dependem de ordem de inicializacao (log file existente antes do cron)",
+        "WebSocket e watcher usam o mesmo server HTTP; ordem de criacao importa",
+        "package.json scripts start = node server.js deve continuar funcionando"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "node server.js sobe sem erro em DRY_RUN (cheirar com AUTO_SCHEDULE_ENABLED=false)",
+        "server.js reduzido a funcoes de boot que reimportam de server/",
+        "Nenhuma alteracao em package.json ou ecosystem.config.js",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test", "server-boot-check"],
+      "requiredSkills": [
+        "file-read", "file-write", "extract-function", "import-update",
+        "find-references", "validate-imports", "validate-structure", "validate-docs",
+        "git-status", "git-diff", "test-runner", "commit-manager",
+        "progress-update", "doc-sync"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E6",
+      "name": "Limpar estado global do logger",
+      "objective": "Remover o side-effect de cleanOldLogs(LOG_DIR) executado no top-level do require de utils/logger.js e expor initLogger(logDir) chamado explicitamente por main.js e server.js no boot.",
+      "phase": "cleanup",
+      "filesInvolved": ["utils/logger.js", "main.js", "server.js"],
+      "deps": ["E0", "E5"],
+      "risks": [
+        "Codigo que dependia do cleanOldLogs via require perdera essa chamada automatica; se initLogger nao for chamado, logs antigos podem acumular"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "Nenhum cleanOldLogs(LOG_DIR) no top-level de utils/logger.js",
+        "initLogger exportado e chamado em main.js e server.js",
+        "logs/ continua sendo criado/limpo corretamente em DRY_RUN",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test", "dry-run-runner"],
+      "requiredSkills": [
+        "file-read", "file-write", "import-update", "find-references",
+        "validate-imports", "git-status", "git-diff", "test-runner",
+        "commit-manager", "progress-update"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E7",
+      "name": "Atualizar documentacao canonica (codex-context) e adicionar ADR-010",
+      "objective": "Sincronizar codex-context/02-architecture.md e 06-inventory.md com a nova arvore de arquivos. Adicionar ADR-010 em 04-decisions.md justificando a reorganizacao interna que preserva a arquitetura.",
+      "phase": "docs",
+      "filesInvolved": [
+        "codex-context/02-architecture.md", "codex-context/06-inventory.md",
+        "codex-context/04-decisions.md", "codex-context/05-backlog.md"
+      ],
+      "deps": ["E1", "E2", "E3", "E4", "E5", "E6"],
+      "risks": [
+        "Referencias a linhas antigas podem ficar obsoletas; checar cada uma"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "Todas as referencias a src/test-* substituidas pelos novos caminhos",
+        "Tabelas de modulos e utilidades em 02-architecture.md e 06-inventory.md refletem a nova arvore",
+        "ADR-010 presente com Contexto, Decisao, Consequencias",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": [
+        "doc-read", "doc-sync", "validate-docs", "git-status",
+        "git-diff", "test-runner", "commit-manager", "progress-update"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true
+    },
+    {
+      "id": "E8",
+      "name": "Remover diretorio utils/ vazio (opcional)",
+      "objective": "Apos logger ser migrado (se aplicavel) ou mantido como unico occupante, decidir se utils/ fica vazio ou e mantido. Esta etapa e opcional e pode ser skipada.",
+      "phase": "cleanup",
+      "filesInvolved": [],
+      "deps": ["E0", "E6"],
+      "risks": [
+        "Se logger.js permanecer em utils/, esta etapa e no-op"
+      ],
+      "completionCriteria": [
+        "npm test passa",
+        "Decisao registrada (manter ou remover utils/)",
+        "progress.json atualizado"
+      ],
+      "requiredTests": ["npm test"],
+      "requiredSkills": [
+        "git-status", "test-runner", "progress-update", "commit-manager"
+      ],
+      "rollbackStrategy": "git revert do commit da etapa",
+      "atomic": true,
+      "optional": true
+    }
+  ]
+}
