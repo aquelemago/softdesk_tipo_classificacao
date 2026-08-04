@@ -11,6 +11,15 @@ completa na conversa de arquitetura (Meta-Agente de Refatoracao).
 4. `skills/registry.json` — indice de Skills disponiveis.
 5. `skills/<id>/SKILL.md` — especificacao de cada Skill.
 
+## Branch de trabalho
+
+- `main` permanece intocada durante a refatoracao.
+- Toda a refatoracao acontece na branch `refactor/etapas`.
+- Cada etapa (E1..E8) vira exatamente um commit nessa branch.
+- Ao final, a branch pode ser mergeada ou squash-mergeada para `main`.
+- O campo `project.workBranch` em `progress.json` registra a branch escolhida
+  e `project.workBranchFromSha` aponta para o SHA de onde ela partiu.
+
 ## Fluxo do Executor
 
 1. Ler `progress.json`.
