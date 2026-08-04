@@ -27,7 +27,10 @@
                                              ]
                           },
                    "E1":  {
-                              "status":  "pending"
+                              "status":  "in_progress",
+                              "startedAt":  "2026-08-04T16:51:12Z",
+                              "attempt":  1,
+                              "runDir":  ".refactor/runs/20260804-165112-etapa-E1"
                           },
                    "E2":  {
                               "status":  "pending"
@@ -103,9 +106,10 @@
                 },
     "skillsRegistryVersion":  null,
     "globalErrors":  [
-
+                       "2026-08-04E1-incident: validacao require-time via node -e require(./main.js) disparou o pipeline real main.js (auto-executavel). DRY_RUN ausente no .env do ambiente permitiu writes (PUT 200) em chamados Softdesk de producao (>=5: 80039, 80038, 80037, 80036, 80035). Dano zero no repo (working tree nao-commitada); HEAD intocado. Licao: SkillManager deve criar validate-imports (parse estatico, sem carregar) antes de qualquer require-time check."
                      ],
     "observations":  [
-
+                       "E1: arquivos doc com referencias a src/test-* fora de filesInvolved[] adiados para E7 - README.md (linhas 40,41), codex-context/01-overview.md (25,46,47), codex-context/03-operations.md (35,36), codex-context/05-backlog.md (9,18).",
+                       "E1: pasta runtime/ criada colateralmente pela execucao acidental do pipeline; sera git-ignored nesta etapa ou tratada adiante (nao prejudica E1)."
                      ]
 }

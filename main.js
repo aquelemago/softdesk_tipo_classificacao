@@ -1,7 +1,7 @@
-﻿const getChamadosAbertos = require('./src/test-retorna-ultimos-chamados-abertos');
+﻿const getChamadosAbertos = require('./src/softdesk/retornaChamadosAbertos');
 require('dotenv').config({ quiet: true });
 
-const { buscarDetalhesChamado } = require('./src/test-retorna-ultimos-chamados-abertos');
+const { buscarDetalhesChamado } = require('./src/softdesk/retornaChamadosAbertos');
 const { log, stripHtml } = require('./utils/logger');
 const classificarChamadoOpenAI = require('./utils/classificador_openai');
 const { montarPayloadAtualizacao } = require('./utils/classificador_openai');

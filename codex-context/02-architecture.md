@@ -7,8 +7,8 @@ Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini
    --> parser + static ID mapping --> payload --> DRY_RUN gate --> Softdesk PUT
 ```
 
-1. `main.js` calls `getChamadosAbertos(limit)` to fetch open tickets (`main.js:37`, `src/test-retorna-ultimos-chamados-abertos.js:62-94`).
-2. For each ticket, `buscarDetalhesChamado(codigo)` fetches the detail; only tickets whose `tipo_chamado.descricao` normalizes to `nao classificado` are returned (`src/test-retorna-ultimos-chamados-abertos.js:32-53`).
+1. `main.js` calls `getChamadosAbertos(limit)` to fetch open tickets (`main.js:37`, `src/softdesk/retornaChamadosAbertos.js:62-94`).
+2. For each ticket, `buscarDetalhesChamado(codigo)` fetches the detail; only tickets whose `tipo_chamado.descricao` normalizes to `nao classificado` are returned (`src/softdesk/retornaChamadosAbertos.js:32-53`).
 3. The detail is sanitized and shaped into the prompt by `buildPromptClassificacao` (`utils/classificador_openai.js:97-136`).
 4. The configured provider (`CLASSIFICADOR_PROVIDER`) is invoked: `chamarOpenAI` or `chamarGoogleGemini` (`utils/classificador_openai.js:445-528`).
 5. The response is parsed as JSON with a `TIPO|PRIORIDADE` fallback (`utils/classificador_openai.js:155-187`).
@@ -31,10 +31,10 @@ Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini
 | `main.js` | Orchestrates the classification pipeline. |
 | `server.js` | HTTP, WebSocket, cron, child-process orchestration. |
 | `src/softdeskConfig.js` | Builds the Softdesk base URL and request headers. |
-| `src/test-retorna-ultimos-chamados-abertos.js` | Lists open tickets and gates them on `nao classificado`. |
+| `src/softdesk/retornaChamadosAbertos.js` | Lists open tickets and gates them on `nao classificado`. |
 | `src/listarTiposChamado.js` | Lists Softdesk ticket types when run as a script. |
-| `src/test-listar-prioridades.js` | Lists Softdesk priorities when run as a script. |
-| `src/test-retorna-chamados-sem-tipo.js` | Queries tickets without a type when run as a script. |
+| `scripts/listarPrioridades.js` | Lists Softdesk priorities when run as a script. |
+| `scripts/retornaChamadosSemTipo.js` | Queries tickets without a type when run as a script. |
 | `src/editarChamado.js` | Issues the Softdesk `PUT` for a ticket. |
 | `utils/classificador_openai.js` | Prompt, parser, static mapping, providers (OpenAI and Gemini), Gemini throttling. |
 | `utils/logger.js` | Weekly rotating log files, colorized console output, HTML strip helper. |

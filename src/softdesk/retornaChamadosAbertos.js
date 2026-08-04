@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
-const { log, logSeparator, stripHtml } = require('../utils/logger');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('./softdeskConfig');
+const { log, logSeparator, stripHtml } = require('../../utils/logger');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../softdeskConfig');
 
 function normalizarTexto(valor) {
   return String(valor || '')

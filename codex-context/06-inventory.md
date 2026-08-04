@@ -19,10 +19,10 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 | --- | --- |
 | `src/softdeskConfig.js` | Softdesk base URL and headers. |
 | `src/editarChamado.js` | `PUT /chamado`. |
-| `src/test-retorna-ultimos-chamados-abertos.js` | List open tickets + gate on `nao classificado`. |
+| `src/softdesk/retornaChamadosAbertos.js` | List open tickets + gate on `nao classificado`. |
 | `src/listarTiposChamado.js` | `GET /tipo-de-chamado`. |
-| `src/test-listar-prioridades.js` | `GET /prioridade`. |
-| `src/test-retorna-chamados-sem-tipo.js` | `GET /chamado?RetornaChamadosSemTipo`. |
+| `scripts/listarPrioridades.js` | `GET /prioridade`. |
+| `scripts/retornaChamadosSemTipo.js` | `GET /chamado?RetornaChamadosSemTipo`. |
 
 ## Utilities
 
