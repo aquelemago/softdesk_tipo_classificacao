@@ -12,8 +12,8 @@
                     "workBranchFromSha":  "c49b04da8711cfdf406850dfa0b68745ea6c193d"
                 },
     "currentPhase":  "restructure",
-    "currentStageId":  "E1",
-    "nextStageId":  "E1",
+    "currentStageId":  "E2",
+    "nextStageId":  "E2",
     "stages":  {
                    "E0":  {
                               "status":  "completed",
@@ -27,10 +27,23 @@
                                              ]
                           },
                    "E1":  {
-                              "status":  "in_progress",
+                              "status":  "completed",
                               "startedAt":  "2026-08-04T16:51:12Z",
-                              "attempt":  1,
-                              "runDir":  ".refactor/runs/20260804-165112-etapa-E1"
+                              "runDir":  ".refactor/runs/20260804-165112-etapa-E1",
+                              "committedAt":  "2026-08-04T17:33:24Z",
+                              "commitSha":  "d2db72374fd8ad81111869523cd4732ef6accb0b",
+                              "skillsUsed":  [
+                                                 "file-move",
+                                                 "file-rename",
+                                                 "import-update",
+                                                 "find-references",
+                                                 "doc-sync",
+                                                 "git-status",
+                                                 "git-diff",
+                                                 "test-runner",
+                                                 "commit-manager",
+                                                 "progress-update"
+                                             ]
                           },
                    "E2":  {
                               "status":  "pending"
@@ -96,20 +109,93 @@
                         "errors":  [
 
                                    ]
+                    },
+                    {
+                        "timestamp":  "2026-08-04T17:33:24Z",
+                        "stageId":  "E1",
+                        "action":  "stage_completed",
+                        "attempt":  1,
+                        "commitSha":  "d2db72374fd8ad81111869523cd4732ef6accb0b",
+                        "previousSha":  "e18904a762b99e78838c545d77de69fbcffae6d5",
+                        "skillsUsed":  [
+                                           "file-move",
+                                           "file-rename",
+                                           "import-update",
+                                           "find-references",
+                                           "doc-sync",
+                                           "git-status",
+                                           "git-diff",
+                                           "test-runner",
+                                           "commit-manager",
+                                           "progress-update"
+                                       ],
+                        "validations":  [
+                                            {
+                                                "name":  "git-status",
+                                                "passed":  true
+                                            },
+                                            {
+                                                "name":  "validate-imports",
+                                                "passed":  true,
+                                                "note":  "static parse 10/10"
+                                            },
+                                            {
+                                                "name":  "doc-sync",
+                                                "passed":  true,
+                                                "files":  [
+                                                              "02-architecture.md",
+                                                              "06-inventory.md"
+                                                          ]
+                                            },
+                                            {
+                                                "name":  "no-test-prefix-in-src",
+                                                "passed":  true
+                                            }
+                                        ],
+                        "tests":  [
+                                      {
+                                          "name":  "npm test",
+                                          "status":  "pass",
+                                          "passed":  16,
+                                          "failed":  0,
+                                          "durationMs":  243
+                                      }
+                                  ],
+                        "filesTouched":  [
+                                             "main.js",
+                                             "codex-context/02-architecture.md",
+                                             "codex-context/06-inventory.md",
+                                             "src/test-listar-prioridades.js -\u003e scripts/listarPrioridades.js",
+                                             "src/test-retorna-chamados-sem-tipo.js -\u003e scripts/retornaChamadosSemTipo.js",
+                                             "src/test-retorna-ultimos-chamados-abertos.js -\u003e src/softdesk/retornaChamadosAbertos.js",
+                                             ".refactor/progress.json",
+                                             ".refactor/skills/registry.json",
+                                             ".refactor/skills/file-move/SKILL.md",
+                                             ".refactor/skills/file-rename/SKILL.md",
+                                             ".refactor/skills/import-update/SKILL.md",
+                                             ".refactor/skills/find-references/SKILL.md",
+                                             ".refactor/skills/doc-sync/SKILL.md",
+                                             ".refactor/rollback/E1.json",
+                                             ".refactor/runs/20260804-165112-etapa-E1/find-references.json",
+                                             ".refactor/runs/20260804-165112-etapa-E1/result.json"
+                                         ],
+                        "errors":  [
+
+                                   ]
                     }
                 ],
     "lastRun":  {
                     "startedAt":  "2026-08-04T15:28:11Z",
-                    "finishedAt":  "2026-08-04T15:31:15Z",
+                    "finishedAt":  "2026-08-04T17:33:24Z",
                     "outcome":  "success",
-                    "runDir":  ".refactor/runs/20260804-152811-etapa-E0"
+                    "runDir":  ".refactor/runs/20260804-165112-etapa-E1"
                 },
     "skillsRegistryVersion":  null,
     "globalErrors":  [
-                       "2026-08-04E1-incident: validacao require-time via node -e require(./main.js) disparou o pipeline real main.js (auto-executavel). DRY_RUN ausente no .env do ambiente permitiu writes (PUT 200) em chamados Softdesk de producao (>=5: 80039, 80038, 80037, 80036, 80035). Dano zero no repo (working tree nao-commitada); HEAD intocado. Licao: SkillManager deve criar validate-imports (parse estatico, sem carregar) antes de qualquer require-time check."
+                         "2026-08-04E1-incident: validacao require-time via node -e require(./main.js) disparou o pipeline real main.js (auto-executavel). DRY_RUN ausente no .env do ambiente permitiu writes (PUT 200) em chamados Softdesk de producao (\u003e=5: 80039, 80038, 80037, 80036, 80035). Dano zero no repo (working tree nao-commitada); HEAD intocado. Licao: SkillManager deve criar validate-imports (parse estatico, sem carregar) antes de qualquer require-time check."
                      ],
     "observations":  [
-                       "E1: arquivos doc com referencias a src/test-* fora de filesInvolved[] adiados para E7 - README.md (linhas 40,41), codex-context/01-overview.md (25,46,47), codex-context/03-operations.md (35,36), codex-context/05-backlog.md (9,18).",
-                       "E1: pasta runtime/ criada colateralmente pela execucao acidental do pipeline; sera git-ignored nesta etapa ou tratada adiante (nao prejudica E1)."
+                         "E1: arquivos doc com referencias a src/test-* fora de filesInvolved[] adiados para E7 - README.md (linhas 40,41), codex-context/01-overview.md (25,46,47), codex-context/03-operations.md (35,36), codex-context/05-backlog.md (9,18).",
+                         "E1: pasta runtime/ criada colateralmente pela execucao acidental do pipeline; sera git-ignored nesta etapa ou tratada adiante (nao prejudica E1)."
                      ]
 }

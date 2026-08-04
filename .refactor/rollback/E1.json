@@ -1,22 +1,22 @@
 ﻿{
-  "stageId": "E1",
-  "previousSha": "e18904a762b99e78838c545d77de69fbcffae6d5",
-  "commitSha": null,
-  "createdAt": "2026-08-04T17:31:36Z",
-  "files": [
-    "main.js",
-    "codex-context/02-architecture.md",
-    "codex-context/06-inventory.md",
-    "src/test-listar-prioridades.js",
-    "src/test-retorna-chamados-sem-tipo.js",
-    "src/test-retorna-ultimos-chamados-abertos.js",
-    "src/softdesk/retornaChamadosAbertos.js",
-    "scripts/listarPrioridades.js",
-    "scripts/retornaChamadosSemTipo.js"
-  ],
-  "renames": {
-    "src/test-retorna-ultimos-chamados-abertos.js": "src/softdesk/retornaChamadosAbertos.js",
-    "src/test-listar-prioridades.js": "scripts/listarPrioridades.js",
-    "src/test-retorna-chamados-sem-tipo.js": "scripts/retornaChamadosSemTipo.js"
-  }
+    "stageId":  "E1",
+    "previousSha":  "e18904a762b99e78838c545d77de69fbcffae6d5",
+    "commitSha":  "d2db72374fd8ad81111869523cd4732ef6accb0b",
+    "createdAt":  "2026-08-04T17:31:36Z",
+    "files":  [
+                  "main.js",
+                  "codex-context/02-architecture.md",
+                  "codex-context/06-inventory.md",
+                  "src/test-listar-prioridades.js",
+                  "src/test-retorna-chamados-sem-tipo.js",
+                  "src/test-retorna-ultimos-chamados-abertos.js",
+                  "src/softdesk/retornaChamadosAbertos.js",
+                  "scripts/listarPrioridades.js",
+                  "scripts/retornaChamadosSemTipo.js"
+              ],
+    "renames":  {
+                    "src/test-retorna-ultimos-chamados-abertos.js":  "src/softdesk/retornaChamadosAbertos.js",
+                    "src/test-listar-prioridades.js":  "scripts/listarPrioridades.js",
+                    "src/test-retorna-chamados-sem-tipo.js":  "scripts/retornaChamadosSemTipo.js"
+                }
 }
