@@ -11,6 +11,7 @@ const files = [
   'src/utils/text.js',
   'src/domain/constants.js',
   'src/services/classification/parser.js',
+  'src/services/classification/mapping.js',
   'src/softdesk/retornaChamadosAbertos.js',
   'utils/classificador_openai.js',
   'scripts/listarPrioridades.js',
