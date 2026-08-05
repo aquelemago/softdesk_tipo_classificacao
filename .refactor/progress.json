@@ -12,8 +12,8 @@
     "workBranchFromSha": "c49b04da8711cfdf406850dfa0b68745ea6c193d"
   },
   "currentPhase": "restructure",
-  "currentStageId": "E7",
-  "nextStageId": "E7",
+  "currentStageId": "E8",
+  "nextStageId": "E8",
   "stages": {
     "E0": {"status": "completed", "commitSha": "99414ca7530f30e10db988df97bd4288fb62b80d", "completedAt": "2026-08-05T11:17:00Z"},
     "E1": {"status": "completed", "commitSha": "9bfc00dbc2717b208e432535271fb6f950f1030d", "completedAt": "2026-08-05T11:25:00Z"},
@@ -22,7 +22,7 @@
     "E4": {"status": "completed", "commitSha": "b928937", "completedAt": "2026-08-05T12:00:00Z"},
     "E5": {"status": "completed", "commitSha": "eaa17b3", "completedAt": "2026-08-05T12:30:00Z"},
     "E6": {"status": "completed", "commitSha": "d8998a9", "completedAt": "2026-08-05T13:00:00Z"},
-    "E7": {"status": "pending"},
+    "E7": {"status": "completed", "commitSha": "c4cac25", "completedAt": "2026-08-05T13:30:00Z"},
     "E8": {"status": "pending"},
     "E9": {"status": "pending"},
     "E10": {"status": "pending"},
@@ -32,19 +32,20 @@
   },
   "history": [
     {"timestamp": "2026-08-05T11:00:00Z", "stageId": "E0", "action": "plan_reset", "attempt": 1, "note": "Reset to new folder architecture plan (14 stages E0-E13). Previous E0-E3 work preserved in git history but new plan starts from folder architecture E0."},
-    {"timestamp": "2026-08-05T11:17:00Z", "stageId": "E0", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "99414ca7530f30e10db988df97bd4288fb62b80d", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "main-dry-run": "PASS"}, "note": "E0: created folders src/{config,domain,services/classification/providers,services/softdesk,utils}; moved logger.js and text.js (ex-texto) into src/utils/; updated 6 files require() paths."},
+    {"timestamp": "2026-08-05T11:17:00Z", "stageId": "E0", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "99414ca7530f30e10db98df97bd4288fb62b80d", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "main-dry-run": "PASS"}, "note": "E0: created folders src/{config,domain,services/classification/providers,services/softdesk,utils}; moved logger.js and text.js (ex-texto) into src/utils/; updated 6 files require() paths."},
     {"timestamp": "2026-08-05T11:25:00Z", "stageId": "E1", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E1: extracted TIPOS, PRIORIDADES, CODIGO_TIPO_CHAMADO, CODIGO_PRIORIDADE, TIPO_ALIASES, PRIORIDADE_ALIASES to src/domain/constants.js; classificador_openai.js imports them via require(../src/domain/constants)."},
     {"timestamp": "2026-08-05T11:32:00Z", "stageId": "E2", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E2: extracted normalizarTextoClassificacao, normalizarTipo, normalizarPrioridade, extrairJson, parseClassificacaoOpenAI to src/services/classification/parser.js; classificador_openai.js imports them via require(../src/services/classification/parser)."},
     {"timestamp": "2026-08-05T11:38:00Z", "stageId": "E3", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E3: extracted mapearClassificacaoSoftdesk, montarPayloadAtualizacao to src/services/classification/mapping.js; classificador_openai.js imports via require(../src/services/classification/mapping). mapping imports CODIGO_* from domain/constants and normalizarTipo/normalizarPrioridade from parser."},
     {"timestamp": "2026-08-05T12:10:00Z", "stageId": "E5", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "eaa17b3", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E5: extracted chamarOpenAI into src/services/classification/providers/openai.js"},
-    {"timestamp": "2026-08-05T13:00:00Z", "stageId": "E6", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "d8998a9", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E6: extracted chamarGoogleGemini and all quota/retry/backoff logic into src/services/classification/providers/gemini.js. Updated imports in classificador_openai.js and tests."}
+    {"timestamp": "2026-08-05T13:00:00Z", "stageId": "E6", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "d8998a9", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E6: extracted chamarGoogleGemini and all quota/retry/backoff logic into src/services/classification/providers/gemini.js. Updated imports in classificador_openai.js and tests."},
+    {"timestamp": "2026-08-05T13:30:00Z", "stageId": "E7", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "c4cac25", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E7: created classification orchestrator (classify.js) and reduced classificador_openai.js to facade. Updated main.js imports."}
   ],
   "lastRun": {
-    "startedAt": "2026-08-05T12:45:00Z",
-    "finishedAt": "2026-08-05T13:00:00Z",
+    "startedAt": "2026-08-05T13:15:00Z",
+    "finishedAt": "2026-08-05T13:30:00Z",
     "outcome": "success",
-    "stageId": "E6",
-    "runDir": ".refactor/runs/20260805-E6"
+    "stageId": "E7",
+    "runDir": ".refactor/runs/20260805-E7"
   },
   "skillsRegistryVersion": "2026-08-05T10:24:25Z",
   "globalErrors": ["2026-08-04E1-incident: see AGENT.md"],
