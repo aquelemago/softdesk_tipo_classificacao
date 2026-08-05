@@ -1,25 +1,16 @@
 ﻿{
     "version":  1,
-    "updatedAt":  "2026-08-04T16:50:24Z",
+    "updatedAt":  "2026-08-05T08:26:28Z",
     "skills":  {
-                   "doc-sync":  {
-                                    "id":  "doc-sync",
-                                    "version":  "1.0.0",
-                                    "path":  "skills/doc-sync/SKILL.md",
-                                    "hash":  "147e88bfe442f246e871ac8e8d9fdbefeb061ca11d895a304f7728243aa70214",
-                                    "createdAt":  "2026-08-04T16:50:24Z",
-                                    "lastUsedAt":  null,
-                                    "usageCount":  0
-                                },
-                   "find-references":  {
-                                           "id":  "find-references",
-                                           "version":  "1.0.0",
-                                           "path":  "skills/find-references/SKILL.md",
-                                           "hash":  "aaa1c8e2c304d518eaa8e1f334527a8dba47387b8c95fccb39f15b5e5c6d01ae",
-                                           "createdAt":  "2026-08-04T16:50:24Z",
-                                           "lastUsedAt":  null,
-                                           "usageCount":  0
-                                       },
+                   "import-update":  {
+                                         "id":  "import-update",
+                                         "version":  "1.0.0",
+                                         "path":  "skills/import-update/SKILL.md",
+                                         "hash":  "83b920103aaae55d6283a4aedc71f561b09ff874759f5769764a6dda7142eb54",
+                                         "createdAt":  null,
+                                         "lastUsedAt":  null,
+                                         "usageCount":  0
+                                     },
                    "test-runner":  {
                                        "id":  "test-runner",
                                        "version":  "1.0.0",
@@ -29,47 +20,38 @@
                                        "lastUsedAt":  null,
                                        "usageCount":  0
                                    },
-                   "commit-manager":  {
-                                          "id":  "commit-manager",
-                                          "version":  "1.0.0",
-                                          "path":  "skills/commit-manager/SKILL.md",
-                                          "hash":  "9d2b9885edbd359fbaf69de3caade0b22703008a2a7bed91b3b1571d478ef154",
-                                          "createdAt":  null,
-                                          "lastUsedAt":  null,
-                                          "usageCount":  0
-                                      },
+                   "doc-sync":  {
+                                    "id":  "doc-sync",
+                                    "version":  "1.0.0",
+                                    "path":  "skills/doc-sync/SKILL.md",
+                                    "hash":  "147e88bfe442f246e871ac8e8d9fdbefeb061ca11d895a304f7728243aa70214",
+                                    "createdAt":  null,
+                                    "lastUsedAt":  null,
+                                    "usageCount":  0
+                                },
+                   "file-write":  {
+                                      "id":  "file-write",
+                                      "version":  "1.0.0",
+                                      "path":  "skills/file-write/SKILL.md",
+                                      "hash":  "e65caadd84310656fe8b140de5d9b2317f3f2c1ca085e4e85c7d0da3a57ba270",
+                                      "createdAt":  "2026-08-05T08:26:28Z",
+                                      "lastUsedAt":  null,
+                                      "usageCount":  0
+                                  },
                    "file-move":  {
                                      "id":  "file-move",
                                      "version":  "1.0.0",
                                      "path":  "skills/file-move/SKILL.md",
                                      "hash":  "49f42c5c1b746e849a77f11f4405602aa00b4465e6cc62e341dcf8a3b9a1ee9f",
-                                     "createdAt":  "2026-08-04T16:50:24Z",
+                                     "createdAt":  null,
                                      "lastUsedAt":  null,
                                      "usageCount":  0
                                  },
-                   "git-status":  {
-                                      "id":  "git-status",
-                                      "version":  "1.0.0",
-                                      "path":  "skills/git-status/SKILL.md",
-                                      "hash":  "8b95a9098a9d8dca9f2337d24f9e30381f8f6cb0dcd78d43880c84f1e665170e",
-                                      "createdAt":  null,
-                                      "lastUsedAt":  null,
-                                      "usageCount":  0
-                                  },
-                   "import-update":  {
-                                         "id":  "import-update",
-                                         "version":  "1.0.0",
-                                         "path":  "skills/import-update/SKILL.md",
-                                         "hash":  "83b920103aaae55d6283a4aedc71f561b09ff874759f5769764a6dda7142eb54",
-                                         "createdAt":  "2026-08-04T16:50:24Z",
-                                         "lastUsedAt":  null,
-                                         "usageCount":  0
-                                     },
-                   "progress-update":  {
-                                           "id":  "progress-update",
+                   "find-references":  {
+                                           "id":  "find-references",
                                            "version":  "1.0.0",
-                                           "path":  "skills/progress-update/SKILL.md",
-                                           "hash":  "68b6d08551cd376981fad2db5663b7e8c01e40f54e181ec2d637205b0467f262",
+                                           "path":  "skills/find-references/SKILL.md",
+                                           "hash":  "aaa1c8e2c304d518eaa8e1f334527a8dba47387b8c95fccb39f15b5e5c6d01ae",
                                            "createdAt":  null,
                                            "lastUsedAt":  null,
                                            "usageCount":  0
@@ -83,14 +65,59 @@
                                     "lastUsedAt":  null,
                                     "usageCount":  0
                                 },
+                   "commit-manager":  {
+                                          "id":  "commit-manager",
+                                          "version":  "1.0.0",
+                                          "path":  "skills/commit-manager/SKILL.md",
+                                          "hash":  "9d2b9885edbd359fbaf69de3caade0b22703008a2a7bed91b3b1571d478ef154",
+                                          "createdAt":  null,
+                                          "lastUsedAt":  null,
+                                          "usageCount":  0
+                                      },
+                   "validate-imports":  {
+                                            "id":  "validate-imports",
+                                            "version":  "1.0.0",
+                                            "path":  "skills/validate-imports/SKILL.md",
+                                            "hash":  "6330eddbbbef8d81ee7f610abad5998270fbe77f52f4952482c09340e4112533",
+                                            "createdAt":  "2026-08-05T08:26:28Z",
+                                            "lastUsedAt":  null,
+                                            "usageCount":  0
+                                        },
+                   "git-status":  {
+                                      "id":  "git-status",
+                                      "version":  "1.0.0",
+                                      "path":  "skills/git-status/SKILL.md",
+                                      "hash":  "8b95a9098a9d8dca9f2337d24f9e30381f8f6cb0dcd78d43880c84f1e665170e",
+                                      "createdAt":  null,
+                                      "lastUsedAt":  null,
+                                      "usageCount":  0
+                                  },
+                   "progress-update":  {
+                                           "id":  "progress-update",
+                                           "version":  "1.0.0",
+                                           "path":  "skills/progress-update/SKILL.md",
+                                           "hash":  "68b6d08551cd376981fad2db5663b7e8c01e40f54e181ec2d637205b0467f262",
+                                           "createdAt":  null,
+                                           "lastUsedAt":  null,
+                                           "usageCount":  0
+                                       },
                    "file-rename":  {
                                        "id":  "file-rename",
                                        "version":  "1.0.0",
                                        "path":  "skills/file-rename/SKILL.md",
                                        "hash":  "4c5601102a81d86ebe95ea2ebfbc25d963bf787adc35d11a2b2a3e1c04556b96",
-                                       "createdAt":  "2026-08-04T16:50:24Z",
+                                       "createdAt":  null,
                                        "lastUsedAt":  null,
                                        "usageCount":  0
-                                   }
+                                   },
+                   "validate-structure":  {
+                                              "id":  "validate-structure",
+                                              "version":  "1.0.0",
+                                              "path":  "skills/validate-structure/SKILL.md",
+                                              "hash":  "270b826fbfd763943dac420474ca82dedc867b274fc449cd063405753da995c7",
+                                              "createdAt":  "2026-08-05T08:26:28Z",
+                                              "lastUsedAt":  null,
+                                              "usageCount":  0
+                                          }
                }
 }

@@ -46,7 +46,10 @@
                                              ]
                           },
                    "E2":  {
-                              "status":  "pending"
+                              "status":  "in_progress",
+                              "startedAt":  "2026-08-04T18:00:00Z",
+                              "attempt":  1,
+                              "runDir":  ".refactor/runs/20260804-180000-etapa-E2"
                           },
                    "E3":  {
                               "status":  "pending"

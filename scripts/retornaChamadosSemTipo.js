@@ -1,13 +1,7 @@
 const fetch = require('node-fetch');
 const { log } = require('../utils/logger');
 const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/softdeskConfig');
-
-function normalizarTexto(valor) {
-  return String(valor || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-}
+const { normalizarTexto } = require('../src/softdesk/mensagem');
 
 async function testarRetornaChamadosSemTipo() {
   try {
