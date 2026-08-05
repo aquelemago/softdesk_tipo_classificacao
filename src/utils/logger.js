@@ -60,7 +60,7 @@ function ensureLogFileForWeek(logDir, date = new Date()) {
   return filePath;
 }
 
-const LOG_DIR = path.join(__dirname, '../logs');
+const LOG_DIR = path.join(__dirname, '../../logs');
 let LOG_FILE = ensureLogFileForWeek(LOG_DIR);
 
 function log(message, type = 'info') {

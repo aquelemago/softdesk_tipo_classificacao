@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { log, logSeparator } = require('../utils/logger');
+const { log, logSeparator } = require('../src/utils/logger');
 const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/softdeskConfig');
 const { mensagemSucesso } = require('../src/softdesk/mensagem');
 

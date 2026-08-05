@@ -1,10 +1,5 @@
 ﻿{
+    "previousSha":  "84d07f5899d15f8cc2ba65c8ae1b3dbf89b27c90",
     "stageId":  "E0",
-    "previousSha":  "6335291f6bb2d4412cc00c4c39b52df287af9e7a",
-    "commitSha":  "c348952c67dc6c6272c10cc08518aeb1106ba40f",
-    "createdAt":  "2026-08-04T15:29:41Z",
-    "files":  [
-
-              ],
-    "note":  "Anchor commit. previousSha aponta para o ultimo commit antes da infraestrutura .refactor/ entrar no Git."
+    "strategy":  "git revert do commit da etapa"
 }

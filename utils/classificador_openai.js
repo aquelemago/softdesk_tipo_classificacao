@@ -2,7 +2,7 @@ require('dotenv').config({ quiet: true });
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
-const { stripHtml: stripHtmlSeguro } = require('../src/utils/texto');
+const { stripHtml: stripHtmlSeguro } = require('../src/utils/text');
 
 const TIPOS = [
   'Duvida/Orientacao',

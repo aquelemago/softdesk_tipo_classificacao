@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const cron = require('node-cron');
-const { getLogFileNameForWeek, ensureLogFileForWeek, log } = require('./utils/logger');
+const { getLogFileNameForWeek, ensureLogFileForWeek, log } = require('./src/utils/logger');
 
 const app = express();
 const server = http.createServer(app);
