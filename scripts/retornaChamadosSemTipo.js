@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const { log } = require('../src/utils/logger');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/softdeskConfig');
-const { normalizarTexto } = require('../src/softdesk/mensagem');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/services/softdesk/config');
+const { normalizarTexto } = require('../src/utils/mensagem');
 
 async function testarRetornaChamadosSemTipo() {
   try {

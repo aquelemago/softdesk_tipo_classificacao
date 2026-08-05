@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const { log, logSeparator } = require('../src/utils/logger');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/softdeskConfig');
-const { mensagemSucesso } = require('../src/softdesk/mensagem');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/services/softdesk/config');
+const { mensagemSucesso } = require('../src/utils/mensagem');
 
 async function listarPrioridades() {
   try {

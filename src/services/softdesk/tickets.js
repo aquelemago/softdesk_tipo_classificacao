@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('./softdeskConfig');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('./config');
 
 async function editarChamado(payload) {
   const response = await fetch(buildSoftdeskUrl('chamado'), {
