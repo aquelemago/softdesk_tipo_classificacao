@@ -27,7 +27,7 @@
     "E9": {"status": "completed", "commitSha": "cbbc6c2", "completedAt": "2026-08-05T16:15:00Z"},
     "E10": {"status": "completed", "commitSha": "ff6d04993aa649c577055e3f82349474b222d4b9", "completedAt": "2026-08-05T16:20:00Z"},
     "E11": {"status": "completed", "commitSha": "da81450d0a574dfbb442ec84ee53ff35c90c6eb3", "completedAt": "2026-08-05T16:28:00Z"},
-    "E12": {"status": "completed", "commitSha": "pending-rollback-E12", "completedAt": "2026-08-05T16:35:00Z"},
+    "E12": {"status": "completed", "commitSha": "ea4b52e1f437e38f1573317f1db0ff6745653445", "completedAt": "2026-08-05T16:35:00Z"},
     "E13": {"status": "pending"}
   },
   "history": [
