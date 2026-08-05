@@ -4,9 +4,9 @@ require('dotenv').config({ quiet: true });
 const { buscarDetalhesChamado } = require('./src/softdesk/retornaChamadosAbertos');
 const { log } = require('./src/utils/logger');
 const { stripHtml } = require('./src/utils/text');
-const classificarChamadoOpenAI = require('./utils/classificador_openai');
-const { montarPayloadAtualizacao } = require('./utils/classificador_openai');
-const { resolverLimiteGeminiRpd } = require('./utils/classificador_openai');
+const classificarChamadoOpenAI = require('./src/services/classification/classify');
+const { montarPayloadAtualizacao } = require('./src/services/classification/mapping');
+const { resolverLimiteGeminiRpd } = require('./src/services/classification/providers/gemini');
 const editarChamado = require('./src/editarChamado');
 
 const contexto = 'Voce e um analista de suporte que ira classificar chamados de acordo com tipo e prioridade.';
