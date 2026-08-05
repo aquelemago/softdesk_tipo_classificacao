@@ -1,16 +1,21 @@
 ﻿{
-  "stageId": "E3",
-  "previousSha": "b3f792469f58a6fd461df42d72ad85c2e43320e3",
-  "commitSha": null,
-  "createdAt": "2026-08-05T09:56:01Z",
-  "files": [
-    "main.js",
-    "utils/logger.js",
-    "utils/classificador_openai.js",
-    "src/utils/texto.js",
-    "src/softdesk/retornaChamadosAbertos.js"
-  ],
-  "newModules": ["src/utils/texto.js"],
-  "removedExports": ["utils/logger.js:stripHtml", "utils/classificador_openai.js:stripHtmlSeguro(def)"],
-  "notes": "Unificou stripHtml em src/utils/texto.js (versao segura). Derivado: src/softdesk/retornaChamadosAbertos.js (import atualizado). Corpus sintetico 20 amostras: 9 identicas, 11 divergentes (3 lixo removido, 8 melhorias). Zero perda de info textual."
+    "stageId":  "E3",
+    "previousSha":  "b3f792469f58a6fd461df42d72ad85c2e43320e3",
+    "commitSha":  "991ac6f12ed79f3401e331a8dff96d62f388c3c7",
+    "createdAt":  "2026-08-05T09:56:01Z",
+    "files":  [
+                  "main.js",
+                  "utils/logger.js",
+                  "utils/classificador_openai.js",
+                  "src/utils/texto.js",
+                  "src/softdesk/retornaChamadosAbertos.js"
+              ],
+    "newModules":  [
+                       "src/utils/texto.js"
+                   ],
+    "removedExports":  [
+                           "utils/logger.js:stripHtml",
+                           "utils/classificador_openai.js:stripHtmlSeguro(def)"
+                       ],
+    "notes":  "Unificou stripHtml em src/utils/texto.js (versao segura). Derivado: src/softdesk/retornaChamadosAbertos.js (import atualizado). Corpus sintetico 20 amostras: 9 identicas, 11 divergentes (3 lixo removido, 8 melhorias). Zero perda de info textual."
 }

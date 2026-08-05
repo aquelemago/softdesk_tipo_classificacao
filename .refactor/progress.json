@@ -12,8 +12,8 @@
                     "workBranchFromSha":  "c49b04da8711cfdf406850dfa0b68745ea6c193d"
                 },
     "currentPhase":  "restructure",
-    "currentStageId":  "E3",
-    "nextStageId":  "E3",
+    "currentStageId":  "E4",
+    "nextStageId":  "E4",
     "stages":  {
                    "E0":  {
                               "status":  "completed",
@@ -65,10 +65,27 @@
                                              ]
                           },
                    "E3":  {
-                              "status":  "in_progress",
+                              "status":  "completed",
                               "startedAt":  "2026-08-04T19:30:00Z",
-                              "attempt":  1,
-                              "runDir":  ".refactor/runs/20260804-193000-etapa-E3"
+                              "runDir":  ".refactor/runs/20260804-193000-etapa-E3",
+                              "committedAt":  "2026-08-05T09:57:23Z",
+                              "commitSha":  "991ac6f12ed79f3401e331a8dff96d62f388c3c7",
+                              "skillsUsed":  [
+                                                 "file-read",
+                                                 "file-write",
+                                                 "text-diff",
+                                                 "strip-html-compare",
+                                                 "dry-run-runner",
+                                                 "import-update",
+                                                 "find-references",
+                                                 "validate-imports",
+                                                 "git-status",
+                                                 "git-diff",
+                                                 "test-runner",
+                                                 "commit-manager",
+                                                 "progress-update",
+                                                 "doc-sync"
+                                             ]
                           },
                    "E4":  {
                               "status":  "pending"
@@ -265,13 +282,84 @@
                         "errors":  [
 
                                    ]
+                    },
+                    {
+                        "timestamp":  "2026-08-05T09:57:23Z",
+                        "stageId":  "E3",
+                        "action":  "stage_completed",
+                        "attempt":  1,
+                        "commitSha":  "991ac6f12ed79f3401e331a8dff96d62f388c3c7",
+                        "previousSha":  "b3f792469f58a6fd461df42d72ad85c2e43320e3",
+                        "skillsUsed":  [
+                                           "file-read",
+                                           "file-write",
+                                           "text-diff",
+                                           "strip-html-compare",
+                                           "dry-run-runner",
+                                           "import-update",
+                                           "find-references",
+                                           "validate-imports",
+                                           "git-status",
+                                           "git-diff",
+                                           "test-runner",
+                                           "commit-manager",
+                                           "progress-update",
+                                           "doc-sync"
+                                       ],
+                        "validations":  [
+                                            {
+                                                "name":  "git-status",
+                                                "passed":  true
+                                            },
+                                            {
+                                                "name":  "validate-imports",
+                                                "passed":  true,
+                                                "note":  "16 OK/11 ext/0 fail"
+                                            },
+                                            {
+                                                "name":  "strip-html-compare",
+                                                "passed":  true,
+                                                "note":  "20 amostras, safe"
+                                            },
+                                            {
+                                                "name":  "no-stripHtml-in-logger",
+                                                "passed":  true
+                                            }
+                                        ],
+                        "tests":  [
+                                      {
+                                          "name":  "npm test",
+                                          "status":  "pass",
+                                          "passed":  16,
+                                          "failed":  0,
+                                          "durationMs":  244
+                                      }
+                                  ],
+                        "filesTouched":  [
+                                             "main.js",
+                                             "utils/logger.js",
+                                             "utils/classificador_openai.js",
+                                             "src/utils/texto.js",
+                                             "src/softdesk/retornaChamadosAbertos.js",
+                                             ".refactor/progress.json",
+                                             ".refactor/skills/registry.json",
+                                             ".refactor/skills/file-read/SKILL.md",
+                                             ".refactor/skills/text-diff/SKILL.md",
+                                             ".refactor/skills/strip-html-compare/SKILL.md",
+                                             ".refactor/skills/dry-run-runner/SKILL.md",
+                                             ".refactor/rollback/E3.json",
+                                             ".refactor/runs/20260804-193000-etapa-E3/result.json"
+                                         ],
+                        "errors":  [
+
+                                   ]
                     }
                 ],
     "lastRun":  {
                     "startedAt":  "2026-08-04T15:28:11Z",
-                    "finishedAt":  "2026-08-05T08:40:50Z",
+                    "finishedAt":  "2026-08-05T09:57:23Z",
                     "outcome":  "success",
-                    "runDir":  ".refactor/runs/20260804-180000-etapa-E2"
+                    "runDir":  ".refactor/runs/20260804-193000-etapa-E3"
                 },
     "skillsRegistryVersion":  null,
     "globalErrors":  [
