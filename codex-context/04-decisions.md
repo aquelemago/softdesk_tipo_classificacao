@@ -55,3 +55,9 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 - **Context:** the docs were previously fragmented (`docs/index.md`, `docs/overview.md`, `docs/guide.md`, `docs/reference.md`) and mixed English/Portuguese.
 - **Decision:** consolidate around `README.md` (human guide), `CODEX_START_HERE.md` (AI entry point), and six numbered documents in `codex-context/`; remove the legacy Markdown.
 - **Consequences:** there is one editorial source of truth per topic; the Softdesk PDF remains as an external reference, not as behavioural evidence.
+
+## ADR-010 — Architecture Reorganization into Modular Structure
+
+- **Context:** the classification logic in `utils/classificador_openai.js` had grown to ~569 lines with mixed concerns: domain constants, text normalization, parsing, mapping, prompt building, provider calls, and quota/retry logic. This made the code hard to test, maintain, and reason about. Softdesk gateways were also scattered across `src/` with inconsistent naming.
+- **Decision:** reorganize the codebase into a modular structure under `src/`: `domain/` for constants, `services/classification/` for the classification pipeline (parser, mapping, prompt, providers), `services/softdesk/` for gateways, and `utils/` for shared utilities. The legacy `utils/classificador_openai.js` remains as a facade for backward compatibility with existing tests and imports.
+- **Consequences:** each module has a single responsibility; dependencies are explicit and unidirectional; tests remain unchanged as they import from the facade; the new structure improves maintainability and enables future extensions (e.g., adding new providers). Migration was incremental across 14 stages (E0-E13) to preserve testability at every step.
