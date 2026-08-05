@@ -3,32 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
 const { stripHtml: stripHtmlSeguro } = require('../src/utils/text');
-
-const TIPOS = [
-  'Duvida/Orientacao',
-  'Incidente',
-  'Requisicao'
-];
-
-const PRIORIDADES = [
-  'Alta',
-  'Baixa',
-  'Critica',
-  'Media'
-];
-
-const CODIGO_TIPO_CHAMADO = {
-  'Duvida/Orientacao': 102,
-  Incidente: 103,
-  Requisicao: 106
-};
-
-const CODIGO_PRIORIDADE = {
-  Alta: 3,
-  Baixa: 1,
-  Critica: 4,
-  Media: 2
-};
+const {
+  TIPOS,
+  PRIORIDADES,
+  CODIGO_TIPO_CHAMADO,
+  CODIGO_PRIORIDADE,
+  TIPO_ALIASES,
+  PRIORIDADE_ALIASES
+} = require('../src/domain/constants');
 
 const GEMINI_RPM_PADRAO = 10;
 const GEMINI_RPD_PADRAO = 20;
@@ -40,21 +22,6 @@ const GEMINI_QUOTA_FILE_PADRAO = path.join(__dirname, '..', 'runtime', 'gemini-q
 let proximaChamadaGeminiEm = 0;
 let filaGemini = Promise.resolve();
 let filaQuotaGemini = Promise.resolve();
-
-const TIPO_ALIASES = {
-  'duvidaorientacao': 'Duvida/Orientacao',
-  'duvida': 'Duvida/Orientacao',
-  'orientacao': 'Duvida/Orientacao',
-  'incidente': 'Incidente',
-  'requisicao': 'Requisicao'
-};
-
-const PRIORIDADE_ALIASES = {
-  'alta': 'Alta',
-  'baixa': 'Baixa',
-  'critica': 'Critica',
-  'media': 'Media'
-};
 
 function normalizarTextoClassificacao(valor) {
   return String(valor || '')
