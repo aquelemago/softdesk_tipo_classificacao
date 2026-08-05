@@ -12,8 +12,8 @@
                     "workBranchFromSha":  "c49b04da8711cfdf406850dfa0b68745ea6c193d"
                 },
     "currentPhase":  "restructure",
-    "currentStageId":  "E2",
-    "nextStageId":  "E2",
+    "currentStageId":  "E3",
+    "nextStageId":  "E3",
     "stages":  {
                    "E0":  {
                               "status":  "completed",
@@ -46,10 +46,23 @@
                                              ]
                           },
                    "E2":  {
-                              "status":  "in_progress",
+                              "status":  "completed",
                               "startedAt":  "2026-08-04T18:00:00Z",
-                              "attempt":  1,
-                              "runDir":  ".refactor/runs/20260804-180000-etapa-E2"
+                              "runDir":  ".refactor/runs/20260804-180000-etapa-E2",
+                              "committedAt":  "2026-08-05T08:40:50Z",
+                              "commitSha":  "c1231624126a65eda63ebaba6a649701e7267977",
+                              "skillsUsed":  [
+                                                 "file-write",
+                                                 "import-update",
+                                                 "find-references",
+                                                 "validate-imports",
+                                                 "validate-structure",
+                                                 "git-status",
+                                                 "git-diff",
+                                                 "test-runner",
+                                                 "commit-manager",
+                                                 "progress-update"
+                                             ]
                           },
                    "E3":  {
                               "status":  "pending"
@@ -185,13 +198,77 @@
                         "errors":  [
 
                                    ]
+                    },
+                    {
+                        "timestamp":  "2026-08-05T08:40:50Z",
+                        "stageId":  "E2",
+                        "action":  "stage_completed",
+                        "attempt":  1,
+                        "commitSha":  "c1231624126a65eda63ebaba6a649701e7267977",
+                        "previousSha":  "e3f84444438d2c9ec2b948972c73a99bde7d309d",
+                        "skillsUsed":  [
+                                           "file-write",
+                                           "import-update",
+                                           "find-references",
+                                           "validate-imports",
+                                           "validate-structure",
+                                           "git-status",
+                                           "git-diff",
+                                           "test-runner",
+                                           "commit-manager",
+                                           "progress-update"
+                                       ],
+                        "validations":  [
+                                            {
+                                                "name":  "git-status",
+                                                "passed":  true
+                                            },
+                                            {
+                                                "name":  "validate-imports",
+                                                "passed":  true,
+                                                "note":  "15 OK/7 ext/0 fail"
+                                            },
+                                            {
+                                                "name":  "validate-structure",
+                                                "passed":  true
+                                            },
+                                            {
+                                                "name":  "no-test-prefix-in-src",
+                                                "passed":  true
+                                            }
+                                        ],
+                        "tests":  [
+                                      {
+                                          "name":  "npm test",
+                                          "status":  "pass",
+                                          "passed":  16,
+                                          "failed":  0,
+                                          "durationMs":  237
+                                      }
+                                  ],
+                        "filesTouched":  [
+                                             "src/softdesk/mensagem.js",
+                                             "src/softdesk/retornaChamadosAbertos.js",
+                                             "scripts/listarPrioridades.js",
+                                             "scripts/retornaChamadosSemTipo.js",
+                                             ".refactor/progress.json",
+                                             ".refactor/skills/registry.json",
+                                             ".refactor/skills/file-write/SKILL.md",
+                                             ".refactor/skills/validate-imports/SKILL.md",
+                                             ".refactor/skills/validate-structure/SKILL.md",
+                                             ".refactor/rollback/E2.json",
+                                             ".refactor/runs/20260804-180000-etapa-E2/result.json"
+                                         ],
+                        "errors":  [
+
+                                   ]
                     }
                 ],
     "lastRun":  {
                     "startedAt":  "2026-08-04T15:28:11Z",
-                    "finishedAt":  "2026-08-04T17:33:24Z",
+                    "finishedAt":  "2026-08-05T08:40:50Z",
                     "outcome":  "success",
-                    "runDir":  ".refactor/runs/20260804-165112-etapa-E1"
+                    "runDir":  ".refactor/runs/20260804-180000-etapa-E2"
                 },
     "skillsRegistryVersion":  null,
     "globalErrors":  [

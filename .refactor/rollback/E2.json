@@ -1,23 +1,25 @@
 ﻿{
-  "stageId": "E2",
-  "previousSha": "e3f84444438d2c9ec2b948972c73a99bde7d309d",
-  "commitSha": null,
-  "createdAt": "2026-08-05T08:39:36Z",
-  "files": [
-    "src/softdesk/mensagem.js",
-    "src/softdesk/retornaChamadosAbertos.js",
-    "scripts/listarPrioridades.js",
-    "scripts/retornaChamadosSemTipo.js",
-    ".refactor/progress.json",
-    ".refactor/skills/registry.json",
-    ".refactor/skills/file-write/SKILL.md",
-    ".refactor/skills/validate-imports/SKILL.md",
-    ".refactor/skills/validate-structure/SKILL.md"
-  ],
-  "newModules": ["src/softdesk/mensagem.js"],
-  "refactoredImports": [
-    "src/softdesk/retornaChamadosAbertos.js (removeu def local de normalizarTexto+mensagemSucesso, importa de ./mensagem)",
-    "scripts/listarPrioridades.js (removeu def local de normalizarTexto, importa mensagemSucesso de ../src/softdesk/mensagem)",
-    "scripts/retornaChamadosSemTipo.js (removeu def local de normalizarTexto, importa de ../src/softdesk/mensagem)"
-  ]
+    "stageId":  "E2",
+    "previousSha":  "e3f84444438d2c9ec2b948972c73a99bde7d309d",
+    "commitSha":  "c1231624126a65eda63ebaba6a649701e7267977",
+    "createdAt":  "2026-08-05T08:39:36Z",
+    "files":  [
+                  "src/softdesk/mensagem.js",
+                  "src/softdesk/retornaChamadosAbertos.js",
+                  "scripts/listarPrioridades.js",
+                  "scripts/retornaChamadosSemTipo.js",
+                  ".refactor/progress.json",
+                  ".refactor/skills/registry.json",
+                  ".refactor/skills/file-write/SKILL.md",
+                  ".refactor/skills/validate-imports/SKILL.md",
+                  ".refactor/skills/validate-structure/SKILL.md"
+              ],
+    "newModules":  [
+                       "src/softdesk/mensagem.js"
+                   ],
+    "refactoredImports":  [
+                              "src/softdesk/retornaChamadosAbertos.js (removeu def local de normalizarTexto+mensagemSucesso, importa de ./mensagem)",
+                              "scripts/listarPrioridades.js (removeu def local de normalizarTexto, importa mensagemSucesso de ../src/softdesk/mensagem)",
+                              "scripts/retornaChamadosSemTipo.js (removeu def local de normalizarTexto, importa de ../src/softdesk/mensagem)"
+                          ]
 }
