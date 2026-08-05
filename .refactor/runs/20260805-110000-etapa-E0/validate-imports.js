@@ -9,6 +9,8 @@ const files = [
   'server.js',
   'src/utils/logger.js',
   'src/utils/text.js',
+  'src/domain/constants.js',
+  'src/services/classification/parser.js',
   'src/softdesk/retornaChamadosAbertos.js',
   'utils/classificador_openai.js',
   'scripts/listarPrioridades.js',
