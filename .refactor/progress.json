@@ -28,7 +28,7 @@
     "E10": {"status": "completed", "commitSha": "ff6d04993aa649c577055e3f82349474b222d4b9", "completedAt": "2026-08-05T16:20:00Z"},
     "E11": {"status": "completed", "commitSha": "da81450d0a574dfbb442ec84ee53ff35c90c6eb3", "completedAt": "2026-08-05T16:28:00Z"},
     "E12": {"status": "completed", "commitSha": "ea4b52e1f437e38f1573317f1db0ff6745653445", "completedAt": "2026-08-05T16:35:00Z"},
-    "E13": {"status": "completed", "commitSha": "pending-rollback-E13", "completedAt": "2026-08-05T16:40:00Z"}
+    "E13": {"status": "completed", "commitSha": "03c2554810f2186bcd6234eed12ba4590fe9bd9c", "completedAt": "2026-08-05T16:40:00Z"}
   },
   "history": [
     {"timestamp": "2026-08-05T11:00:00Z", "stageId": "E0", "action": "plan_reset", "attempt": 1, "note": "Reset to new folder architecture plan (14 stages E0-E13). Previous E0-E3 work preserved in git history but new plan starts from folder architecture E0."},
