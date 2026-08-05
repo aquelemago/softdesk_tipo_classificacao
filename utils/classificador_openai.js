@@ -2,6 +2,7 @@ require('dotenv').config({ quiet: true });
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
+const { stripHtml: stripHtmlSeguro } = require('../src/utils/texto');
 
 const TIPOS = [
   'Duvida/Orientacao',
@@ -54,21 +55,6 @@ const PRIORIDADE_ALIASES = {
   'critica': 'Critica',
   'media': 'Media'
 };
-
-function stripHtmlSeguro(valor) {
-  return String(valor || '')
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'")
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 function normalizarTextoClassificacao(valor) {
   return String(valor || '')

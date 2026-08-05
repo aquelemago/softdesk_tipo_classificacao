@@ -1,7 +1,16 @@
 ﻿{
     "version":  1,
-    "updatedAt":  "2026-08-05T08:26:28Z",
+    "updatedAt":  "2026-08-05T08:47:48Z",
     "skills":  {
+                   "text-diff":  {
+                                     "id":  "text-diff",
+                                     "version":  "1.0.0",
+                                     "path":  "skills/text-diff/SKILL.md",
+                                     "hash":  "2d875bc56f8f4a4bf8c76dfde95bc1801f257ced635e7fcd846f408dc95d3daf",
+                                     "createdAt":  "2026-08-05T08:47:48Z",
+                                     "lastUsedAt":  null,
+                                     "usageCount":  0
+                                 },
                    "import-update":  {
                                          "id":  "import-update",
                                          "version":  "1.0.0",
@@ -11,6 +20,33 @@
                                          "lastUsedAt":  null,
                                          "usageCount":  0
                                      },
+                   "file-read":  {
+                                     "id":  "file-read",
+                                     "version":  "1.0.0",
+                                     "path":  "skills/file-read/SKILL.md",
+                                     "hash":  "852be3847c16427ecff85c88676fa4ba2ff3b4df4c703c3b687b420da1996bcb",
+                                     "createdAt":  "2026-08-05T08:47:48Z",
+                                     "lastUsedAt":  null,
+                                     "usageCount":  0
+                                 },
+                   "dry-run-runner":  {
+                                          "id":  "dry-run-runner",
+                                          "version":  "1.0.0",
+                                          "path":  "skills/dry-run-runner/SKILL.md",
+                                          "hash":  "90fe5f1b6e346097aaff073ee50b1a7c8d3899fcc41ea467b25ddab7cede1435",
+                                          "createdAt":  "2026-08-05T08:47:48Z",
+                                          "lastUsedAt":  null,
+                                          "usageCount":  0
+                                      },
+                   "strip-html-compare":  {
+                                              "id":  "strip-html-compare",
+                                              "version":  "1.0.0",
+                                              "path":  "skills/strip-html-compare/SKILL.md",
+                                              "hash":  "1f87d6eb4619740493fc759bcdf8b47d8d4a4599e975f9d160123677604dd846",
+                                              "createdAt":  "2026-08-05T08:47:48Z",
+                                              "lastUsedAt":  null,
+                                              "usageCount":  0
+                                          },
                    "test-runner":  {
                                        "id":  "test-runner",
                                        "version":  "1.0.0",
@@ -34,7 +70,7 @@
                                       "version":  "1.0.0",
                                       "path":  "skills/file-write/SKILL.md",
                                       "hash":  "e65caadd84310656fe8b140de5d9b2317f3f2c1ca085e4e85c7d0da3a57ba270",
-                                      "createdAt":  "2026-08-05T08:26:28Z",
+                                      "createdAt":  null,
                                       "lastUsedAt":  null,
                                       "usageCount":  0
                                   },
@@ -79,7 +115,7 @@
                                             "version":  "1.0.0",
                                             "path":  "skills/validate-imports/SKILL.md",
                                             "hash":  "6330eddbbbef8d81ee7f610abad5998270fbe77f52f4952482c09340e4112533",
-                                            "createdAt":  "2026-08-05T08:26:28Z",
+                                            "createdAt":  null,
                                             "lastUsedAt":  null,
                                             "usageCount":  0
                                         },
@@ -115,7 +151,7 @@
                                               "version":  "1.0.0",
                                               "path":  "skills/validate-structure/SKILL.md",
                                               "hash":  "270b826fbfd763943dac420474ca82dedc867b274fc449cd063405753da995c7",
-                                              "createdAt":  "2026-08-05T08:26:28Z",
+                                              "createdAt":  null,
                                               "lastUsedAt":  null,
                                               "usageCount":  0
                                           }

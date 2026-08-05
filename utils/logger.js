@@ -86,10 +86,6 @@ function logSeparator() {
   log('-'.repeat(80));
 }
 
-function stripHtml(html) {
-  return String(html).replace(/<[^>]+>/g, '');
-}
-
 cleanOldLogs(LOG_DIR);
 
-module.exports = { log, logSeparator, stripHtml, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek };
+module.exports = { log, logSeparator, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek };
