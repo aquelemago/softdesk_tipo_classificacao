@@ -7,16 +7,18 @@ const path = require('path');
 const classificarChamadoOpenAI = require('../utils/classificador_openai');
 const {
   buildPromptClassificacao,
-  formatarDataLocal,
   parseClassificacaoOpenAI,
   mapearClassificacaoSoftdesk,
   montarPayloadAtualizacao,
+  stripHtmlSeguro
+} = require('../utils/classificador_openai');
+const {
+  formatarDataLocal,
   parseGeminiRetryDelayMs,
   parseRetryAfterMs,
   resolverIntervaloMinimoGeminiMs,
-  resolverLimiteGeminiRpd,
-  stripHtmlSeguro
-} = require('../utils/classificador_openai');
+  resolverLimiteGeminiRpd
+} = require('../src/services/classification/providers/gemini');
 
 test('buildPromptClassificacao remove HTML da descricao e pede JSON', () => {
   const prompt = buildPromptClassificacao({
