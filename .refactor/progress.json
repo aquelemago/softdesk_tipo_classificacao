@@ -12,8 +12,8 @@
     "workBranchFromSha": "c49b04da8711cfdf406850dfa0b68745ea6c193d"
   },
   "currentPhase": "cleanup",
-  "currentStageId": "E11",
-  "nextStageId": "E11",
+  "currentStageId": "E12",
+  "nextStageId": "E12",
   "stages": {
     "E0": {"status": "completed", "commitSha": "99414ca7530f30e10db988df97bd4288fb62b80d", "completedAt": "2026-08-05T11:17:00Z"},
     "E1": {"status": "completed", "commitSha": "9bfc00dbc2717b208e432535271fb6f950f1030d", "completedAt": "2026-08-05T11:25:00Z"},
@@ -26,7 +26,7 @@
     "E8": {"status": "completed", "commitSha": "ab866bd", "completedAt": "2026-08-05T14:00:00Z"},
     "E9": {"status": "completed", "commitSha": "cbbc6c2", "completedAt": "2026-08-05T16:15:00Z"},
     "E10": {"status": "completed", "commitSha": "ff6d04993aa649c577055e3f82349474b222d4b9", "completedAt": "2026-08-05T16:20:00Z"},
-    "E11": {"status": "pending"},
+    "E11": {"status": "completed", "commitSha": "pending-rollback-E11", "completedAt": "2026-08-05T16:28:00Z"},
     "E12": {"status": "pending"},
     "E13": {"status": "pending"}
   },
@@ -41,14 +41,15 @@
     {"timestamp": "2026-08-05T13:30:00Z", "stageId": "E7", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "c4cac25", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E7: created classification orchestrator (classify.js) and reduced classificador_openai.js to facade. Updated main.js imports."},
     {"timestamp": "2026-08-05T14:00:00Z", "stageId": "E8", "action": "stage_completed", "attempt": 1, "outcome": "success", "commitSha": "ab866bd", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16"}, "note": "E8: moved softdesk gateways to src/services/softdesk/, created shared mensagem.js, updated all imports."},
     {"timestamp": "2026-08-05T16:15:00Z", "stageId": "E9", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "strip-html-compare": "PASS"}, "note": "E9: stripHtml already unified in commit 991ac6f (old plan E3). Only src/utils/text.js has implementation; all files import from there. No duplicate implementations found."},
-    {"timestamp": "2026-08-05T16:20:00Z", "stageId": "E10", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "server-boot-check": "PASS"}, "note": "E10: server.js already decomposed: imports from ./server/{cron,httpEndpoints,logBroadcaster}. server.js is boot entrypoint (31 lines). No changes to package.json or ecosystem.config.js."}
+    {"timestamp": "2026-08-05T16:20:00Z", "stageId": "E10", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "server-boot-check": "PASS"}, "note": "E10: server.js already decomposed: imports from ./server/{cron,httpEndpoints,logBroadcaster}. server.js is boot entrypoint (31 lines). No changes to package.json or ecosystem.config.js."},
+    {"timestamp": "2026-08-05T16:28:00Z", "stageId": "E11", "action": "stage_completed", "attempt": 1, "outcome": "success", "validations": {"validate-imports": "PASS", "npm test": "PASS 16/16", "no-top-level-cleanOldLogs": "PASS", "initLogger-exported": "PASS", "initLogger-called": "PASS"}, "note": "E11: removed top-level cleanOldLogs(LOG_DIR) from src/utils/logger.js; added initLogger() function and export. main.js and server.js now call initLogger() at boot."}
   ],
   "lastRun": {
-    "startedAt": "2026-08-05T16:17:00Z",
-    "finishedAt": "2026-08-05T16:20:00Z",
+    "startedAt": "2026-08-05T16:25:00Z",
+    "finishedAt": "2026-08-05T16:28:00Z",
     "outcome": "success",
-    "stageId": "E10",
-    "runDir": ".refactor/runs/20260805-E10"
+    "stageId": "E11",
+    "runDir": ".refactor/runs/20260805-E11"
   },
   "skillsRegistryVersion": "2026-08-05T10:24:25Z",
   "globalErrors": ["2026-08-04E1-incident: see AGENT.md"],

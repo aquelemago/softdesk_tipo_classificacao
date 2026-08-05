@@ -2,8 +2,11 @@
 require('dotenv').config({ quiet: true });
 
 const { buscarDetalhesChamado } = require('./src/softdesk/retornaChamadosAbertos');
-const { log } = require('./src/utils/logger');
+const { log, initLogger } = require('./src/utils/logger');
 const { stripHtml } = require('./src/utils/text');
+
+// Initialize logger (cleans old logs)
+initLogger();
 const classificarChamadoOpenAI = require('./src/services/classification/classify');
 const { montarPayloadAtualizacao } = require('./src/services/classification/mapping');
 const { resolverLimiteGeminiRpd } = require('./src/services/classification/providers/gemini');

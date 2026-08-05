@@ -86,6 +86,8 @@ function logSeparator() {
   log('-'.repeat(80));
 }
 
-cleanOldLogs(LOG_DIR);
+function initLogger() {
+  cleanOldLogs(LOG_DIR);
+}
 
-module.exports = { log, logSeparator, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek };
+module.exports = { log, logSeparator, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek, initLogger };
