@@ -1,0 +1,6 @@
+{
+  "stageId": "E6",
+  "previousSha": "eaa17b3",
+  "createdAt": "2026-08-05T13:00:00Z",
+  "note": "E6: extracted chamarGoogleGemini and all quota/retry/backoff logic into src/services/classification/providers/gemini.js. Updated imports in classificador_openai.js and tests."
+}
