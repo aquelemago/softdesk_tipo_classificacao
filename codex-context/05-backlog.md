@@ -4,10 +4,10 @@ Risks, technical debt, and follow-ups. Each item lists the evidence and the sugg
 
 ## Operational risks
 
-- **Live cron by default.** `AUTO_SCHEDULE_ENABLED !== 'false'` (`server.js:58`) keeps `node main.js` running every 15 minutes unless the literal `"false"` is set. Production deployment must guard `.env` accordingly.
-- **Unauthenticated internal endpoints.** `POST /run-main` and `POST /clear-logs` (`server.js:87-107`) accept requests from anyone who can reach the server. Suggested move: front the server with a reverse proxy that performs authentication or restrict by source IP.
+- **Live cron by default.** `AUTO_SCHEDULE_ENABLED !== 'false'` (`server/cron.js:39`) keeps `node main.js` running every 15 minutes unless the literal `"false"` is set. Production deployment must guard `.env` accordingly.
+- **Unauthenticated internal endpoints.** `POST /run-main` and `POST /clear-logs` (`server/httpEndpoints.js:15-35`) accept requests from anyone who can reach the server. Suggested move: front the server with a reverse proxy that performs authentication or restrict by source IP.
 - **Operational scripts.** `scripts/listarPrioridades.js`, `scripts/retornaChamadosSemTipo.js`, and `src/softdesk/retornaChamadosAbertos.js` make real Softdesk API requests. Suggested move: keep current structure or move under an `ops/` directory.
-- **No Softdesk sandbox.** The repo does not identify a sandbox host (`src/services/softdesk/config.js:3`). Suggested move: introduce a `SOFTDESK_API_BASE_URL` per environment and document the sandbox host when one exists.
+- **No Softdesk sandbox.** The repo does not identify a sandbox host (`src/services/softdesk/config.js:5`). Suggested move: introduce a `SOFTDESK_API_BASE_URL` per environment and document the sandbox host when one exists.
 - **Privacy on outbound LLM calls.** The full ticket description and client name are sent to the LLM (`src/services/classification/prompt.js`). Suggested move: document and possibly enforce a redaction policy before any production rollout.
 
 ## Behavioural debt

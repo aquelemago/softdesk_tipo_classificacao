@@ -101,6 +101,18 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 | `docs/superpowers/plans/2026-07-28-documentation-alignment.md` | Implementation plan. |
 | `docs/reference/API_Softdesk_Documentacao_v1_30.pdf` | External API reference. |
 
+## Agent Skills
+
+| Path | Role |
+| --- | --- |
+| `.agents/skills/documentation-agent/` | Main documentation agent orchestrator. |
+| `.agents/skills/documentation-audit/` | Audits documentation for consistency with code. |
+| `.agents/skills/documentation-generator/` | Generates new documentation (ADRs, backlog, inventory). |
+| `.agents/skills/codex-context-manager/` | Manages codex-context/ files. |
+| `.agents/skills/change-detector/` | Detects changes in the codebase. |
+| `.agents/skills/markdown-formatter/` | Formats Markdown files. |
+| `.agents/skills/validation-checker/` | Validates documentation vs code. |
+
 ## Runtime artefacts (git-ignored)
 
 - `node_modules/` — npm install output.

@@ -1,0 +1,9 @@
+{
+  "permission": {
+    "skill": {
+      "documentation-*": "allow",
+      "mattpocock/skills:*": "ask",
+      "*": "ask"
+    }
+  }
+}

@@ -2,7 +2,6 @@ node_modules/
 .env
 logs/
 Y/
-.agents/
 .ai/
 skills-lock.json
 

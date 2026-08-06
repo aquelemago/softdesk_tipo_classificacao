@@ -22,9 +22,9 @@ Out of scope:
 
 ## Business rules (confirmed in code)
 
-- Only tickets whose `tipo_chamado.descricao` normalizes to `nao classificado` are advanced to the LLM step. `src/test-retorna-ultimos-chamados-abertos.js:36`.
-- Accepted `tipo` values: `Duvida/Orientacao`, `Incidente`, `Requisicao`. `utils/classificador_openai.js:6-10`.
-- Accepted `prioridade` values: `Alta`, `Baixa`, `Critica`, `Media`. `utils/classificador_openai.js:12-17`.
+- Only tickets whose `tipo_chamado.descricao` normalizes to `nao classificado` are advanced to the LLM step. `src/softdesk/retornaChamadosAbertos.js:35`.
+- Accepted `tipo` values: `Duvida/Orientacao`, `Incidente`, `Requisicao`. `src/domain/constants.js:6-10`.
+- Accepted `prioridade` values: `Alta`, `Baixa`, `Critica`, `Media`. `src/domain/constants.js:12-17`.
 - Softdesk IDs are static and hardcoded:
 
   | Text | Code |
@@ -37,28 +37,28 @@ Out of scope:
   | `Alta` | 3 |
   | `Critica` | 4 |
 
-  `utils/classificador_openai.js:19-30`.
+  `src/domain/constants.js:19-30`.
 
-- `DRY_RUN=true` blocks the `PUT`; any other value (including unset) allows the write. `main.js:13`, `main.js:72-79`.
+- `DRY_RUN=true` blocks the `PUT`; any other value (including unset) allows the write. `main.js:17`, `main.js:75-82`.
 
 ## Inputs
 
-- Open tickets returned by Softdesk `GET /chamado?RetornaUltimosChamadosAbertos&limit={limit}`. `src/test-retorna-ultimos-chamados-abertos.js:62-94`.
-- Ticket details from Softdesk `GET /chamado?codigo={codigo}`. `src/test-retorna-ultimos-chamados-abertos.js:16-60`.
-- HTTP `POST /run-main` with a JSON body `{ "limit": number }`. `server.js:87-94`.
+- Open tickets returned by Softdesk `GET /chamado?RetornaUltimosChamadosAbertos&limit={limit}`. `src/softdesk/retornaChamadosAbertos.js:60-90`.
+- Ticket details from Softdesk `GET /chamado?codigo={codigo}`. `src/softdesk/retornaChamadosAbertos.js:15-55`.
+- HTTP `POST /run-main` with a JSON body `{ "limit": number }`. `server/httpEndpoints.js:15-22`.
 - A web UI served from `public/`.
 
 ## Outputs
 
-- `PUT /chamado` with the new `tipo_chamado.codigo` and `prioridade.codigo`. `src/editarChamado.js:4-13`.
-- A weekly log file under `logs/log-chamados-YYYY-MM-DD_YYYY-MM-DD.txt`. `utils/logger.js:22-25`, `utils/logger.js:63-77`.
-- Real-time log lines over the WebSocket at `/`. `server.js:117-122`, `server.js:109-115`.
-- A local Gemini quota file at `runtime/gemini-quota-usage.json` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points). `utils/classificador_openai.js:37`, `utils/classificador_openai.js:313-316`.
+- `PUT /chamado` with the new `tipo_chamado.codigo` and `prioridade.codigo`. `src/services/softdesk/tickets.js:4-13`.
+- A weekly log file under `logs/log-chamados-YYYY-MM-DD_YYYY-MM-DD.txt`. `src/utils/logger.js:22-25`, `src/utils/logger.js:63-77`.
+- Real-time log lines over the WebSocket at `/`. `server/logBroadcaster.js:20-27`, `server/logBroadcaster.js:38-47`.
+- A local Gemini quota file at `runtime/gemini-quota-usage.json` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points). `src/services/classification/providers/gemini.js:37`, `src/services/classification/providers/gemini.js:313-316`.
 
 ## Side effects
 
 - Writes to Softdesk when `DRY_RUN` is not exactly `"true"`.
 - Writes to the active weekly log file under `logs/`.
 - Writes to the local Gemini quota file.
-- Spawns `node main.js` as a child process from `server.js` (`server.js:28-56`, `server.js:87-94`).
-- Schedules a recurring cron job (`server.js:62-78`).
+- Spawns `node main.js` as a child process from `server.js` (`server/httpEndpoints.js:17`, `server/cron.js:10`).
+- Schedules a recurring cron job (`server/cron.js:43-59`).

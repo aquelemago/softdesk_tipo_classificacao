@@ -20,7 +20,7 @@ Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini
 
 - `server.js` boots an Express server, a WebSocket server on the same HTTP listener, and a `node-cron` job.
 - Static files come from `public/`.
-- Two HTTP endpoints accept JSON: `POST /run-main` spawns `node main.js`; `POST /clear-logs` empties the current weekly log file.
+- Two HTTP endpoints accept JSON: `POST /run-main` (in `server/httpEndpoints.js:15-22`) spawns `node main.js`; `POST /clear-logs` (in `server/httpEndpoints.js:24-35`) empties the current weekly log file.
 - The WebSocket receives the full current log file on connect and is broadcast to whenever the file changes.
 - A weekly log file watcher is rotated when the active log file changes.
 
@@ -123,5 +123,5 @@ Key behaviour:
 ## Side effects
 
 - Network calls: Softdesk list, Softdesk detail, Softdesk `PUT`, OpenAI `chat/completions`, Google Gemini `generateContent`.
-- Local writes: weekly log file under `logs/`, Gemini quota file under `runtime/` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points), runtime spawn of `node main.js` from `server.js`.
+- Local writes: weekly log file under `logs/`, Gemini quota file under `runtime/` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points), runtime spawn of `node main.js` from `server/httpEndpoints.js` and `server/cron.js`.
 - Process: `node-cron` schedules a job in `America/Sao_Paulo`.
