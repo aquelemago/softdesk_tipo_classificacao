@@ -1,6 +1,0 @@
-{
-  "stageId": "E8",
-  "previousSha": "c4cac25",
-  "createdAt": "2026-08-05T14:00:00Z",
-  "note": "E8: moved softdesk gateways to src/services/softdesk/, created shared mensagem.js, updated all imports."
-}

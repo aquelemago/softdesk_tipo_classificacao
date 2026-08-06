@@ -1,6 +1,0 @@
-﻿{
-    "stageId":  "E0",
-    "commitSha":  "99414ca7530f30e10db988df97bd4288fb62b80d",
-    "previousSha":  "84d07f5899d15f8cc2ba65c8ae1b3dbf89b27c90",
-    "strategy":  "git revert do commit da etapa"
-}
