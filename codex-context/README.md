@@ -1,29 +1,54 @@
-# codex-context — technical index
+# Documentation Moved
 
-This directory is the technical entry point for AI agents and contributors who need to understand, modify, or audit the Softdesk Ticket Type Classifier. Each document has a single responsibility; the human guide lives at [`../README.md`](../README.md) and the AI entry point at [`../CODEX_START_HERE.md`](../CODEX_START_HERE.md).
+⚠️ **This directory has been reorganized.**
 
-## Documents
+The documentation previously located in `codex-context/` has been moved to `docs/` with a new, more organized structure.
 
-| File | Responsibility |
-| --- | --- |
-| [`01-overview.md`](01-overview.md) | Purpose, scope, business rules, inputs, outputs. |
-| [`02-architecture.md`](02-architecture.md) | End-to-end flow, modules, configuration, side effects. |
-| [`03-operations.md`](03-operations.md) | Setup, run, validate, troubleshoot, operational safety. |
-| [`04-decisions.md`](04-decisions.md) | Lightweight ADRs explaining non-obvious choices. |
-| [`05-backlog.md`](05-backlog.md) | Risks, technical debt, follow-ups. |
-| [`06-inventory.md`](06-inventory.md) | Auditable inventory of files, scripts, integrations and Git state. |
+## 📁 New Documentation Structure
 
-## Reading order
+All documentation is now located in the [`docs/`](../docs/) directory:
 
-1. `01-overview.md`
-2. `02-architecture.md`
-3. `03-operations.md`
-4. `04-decisions.md`
-5. `05-backlog.md`
-6. `06-inventory.md`
+```
+docs/
+├── README.md                      # Documentation index
+├── architecture/                  # Technical architecture
+│   ├── overview.md               # Purpose, scope, business rules
+│   ├── components.md             # System modules and flow
+│   ├── operations.md             # Setup, execution, troubleshooting
+│   └── decisions.md              # Architecture Decision Records (ADRs)
+└── project/                      # Project management
+    ├── backlog.md                # Technical debt and future improvements
+    └── inventory.md              # Project inventory
+```
 
-## Conventions
+## 🔗 Quick Access
 
-- Facts are evidenced with file and line references (`path:line`).
-- Behaviour that is not yet implemented lives in `05-backlog.md`, not in the architecture or overview.
-- External references (for example `docs/reference/API_Softdesk_Documentacao_v1_30.pdf`) are explicitly labelled and never used as the source of truth for runtime behaviour.
+- **[New Documentation Index](../docs/README.md)**
+- **[Overview](../docs/architecture/overview.md)**
+- **[Components](../docs/architecture/components.md)**
+- **[Operations](../docs/architecture/operations.md)**
+- **[Decisions (ADRs)](../docs/architecture/decisions.md)**
+- **[Backlog](../docs/project/backlog.md)**
+- **[Inventory](../docs/project/inventory.md)**
+
+## 🗑️ Cleanup
+
+This directory (`codex-context/`) is now **deprecated** and will be removed in a future commit. Please update your bookmarks and references to point to the new [`docs/`](../docs/) directory.
+
+## 📝 Why This Change?
+
+The documentation was reorganized to:
+1. **Improve clarity** with a more intuitive structure
+2. **Separate concerns** between architecture, project management, and reference materials
+3. **Make it easier** to find and maintain documentation
+4. **Follow best practices** for project documentation organization
+
+## 🔍 How to Find What You Need
+
+- **For architecture and technical details**: Check the [`architecture/`](../docs/architecture/) directory
+- **For project management**: Check the [`project/`](../docs/project/) directory
+- **For reference materials**: Check the [`reference/`](../docs/reference/) directory
+
+---
+
+*Last updated: August 6, 2026*

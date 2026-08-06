@@ -1,4 +1,4 @@
-# 04 — Decisions
+# Architecture Decisions
 
 Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Dates are omitted because they are Git-recorded.
 
@@ -10,9 +10,9 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 
 ## ADR-002 — OpenAI by default, Gemini as an opt-in provider
 
-- **Context:** the original implementation targeted OpenAI; Gemini was added later with quota and retry controls.
-- **Decision:** keep OpenAI as the default (`src/services/classification/providers/openai.js:10`) and treat `google` / `gemini` as first-class providers with rate limiting.
-- **Consequences:** every code path must continue to handle both providers; Gemini carries its own local daily quota and retry/backoff logic (`src/services/classification/providers/gemini.js:50-120`, `src/services/classification/providers/gemini.js:150-212`).
+- **Context:** the original implementation targeted OpenAI; Gemini was added later with quota and retry controls, followed by DeepSeek as a cost-effective alternative.
+- **Decision:** keep OpenAI as the default (`src/services/classification/providers/openai.js:10`) and treat `google`, `gemini`, and `deepseek` as first-class providers with rate limiting.
+- **Consequences:** every code path must continue to handle all providers; Gemini carries its own local daily quota and retry/backoff logic (`src/services/classification/providers/gemini.js:50-120`, `src/services/classification/providers/gemini.js:150-212`).
 
 ## ADR-003 — JSON prompt with `TIPO|PRIORIDADE` fallback
 
@@ -24,7 +24,7 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 
 - **Context:** Softdesk ticket types and priorities are identified by numeric IDs that the system assumes are stable.
 - **Decision:** hardcode the mapping in `CODIGO_TIPO_CHAMADO` and `CODIGO_PRIORIDADE` (`src/domain/constants.js:19-30`).
-- **Consequences:** changes in Softdesk require a code change; see `05-backlog.md` for the validation gap.
+- **Consequences:** changes in Softdesk require a code change; see `backlog.md` for the validation gap.
 
 ## ADR-005 — `DRY_RUN` as a strict string gate
 
@@ -48,7 +48,7 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 
 - **Context:** the UI lives behind no reverse proxy in the shipped configuration.
 - **Decision:** expose `POST /run-main` and `POST /clear-logs` without authentication (`server/httpEndpoints.js:15-35`).
-- **Consequences:** anyone who can reach the server can trigger a real Softdesk write or wipe the current log file. See `05-backlog.md`.
+- **Consequences:** anyone who can reach the server can trigger a real Softdesk write or wipe the current log file. See `backlog.md`.
 
 ## ADR-009 — Documentation restructure
 
@@ -77,3 +77,15 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
   - Requires initial setup and occasional updates to the agent's skills.
   - Depends on OpenCode's tooling (`read`, `write`, `edit`, `glob`, `grep`, `bash`).
   - Skills are loaded on-demand and can be extended with external skills from [skills.sh](https://skills.sh/).
+
+## ADR-012 — Add DeepSeek as a Classification Provider
+
+- **Context:** The classification pipeline supported OpenAI, Google, and Gemini providers (`src/services/classification/classify.js:16-23`). DeepSeek emerged as a cost-effective alternative with competitive performance for classification tasks.
+- **Decision:** Add DeepSeek as a new provider option with its own API client (`src/services/classification/providers/deepseek.js`), integrated into the existing provider resolution logic (`src/services/classification/providers/gemini.js:16`).
+- **Consequences:** Users can now select `deepseek` via `CLASSIFICADOR_PROVIDER`; requires `DEEPSEEK_API_KEY` and optional `DEEPSEEK_MODEL` (defaults to `deepseek-chat`). The provider uses the same prompt/parser/mapping pipeline as other providers.
+
+## ADR-013 — Environment Configuration Simplification
+
+- **Context:** The `.env.example` file had grown with scattered variable declarations, making it harder for new users to understand the minimum required configuration and available options.
+- **Decision:** Restructure `.env.example` into clear sections: **Minimum Required Configurations** (provider selection and API keys), **Optional Configurations** (model selection, safety modes, server settings, scheduling), and **Softdesk Integration** (API base URL).
+- **Consequences:** Improved onboarding experience with explicit section headers and comments explaining each variable's purpose and defaults. Maintains backward compatibility as all existing variables remain supported.

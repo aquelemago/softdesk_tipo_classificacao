@@ -1,4 +1,4 @@
-# 06 — Inventory
+# Project Inventory
 
 An auditable snapshot of files, scripts, integrations and Git state at the time of the documentation alignment. Secret values are intentionally omitted.
 
@@ -41,6 +41,7 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 | `src/services/classification/mapping.js` | Maps classification text to Softdesk numeric IDs, builds update payload. |
 | `src/services/classification/providers/openai.js` | OpenAI API client. |
 | `src/services/classification/providers/gemini.js` | Google Gemini API client with quota and retry/backoff logic. |
+| `src/services/classification/providers/deepseek.js` | DeepSeek API client. |
 
 ### Domain
 
@@ -89,14 +90,12 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 | Path | Role |
 | --- | --- |
 | `README.md` | Human guide. |
-| `CODEX_START_HERE.md` | AI entry point. |
-| `codex-context/README.md` | Technical index. |
-| `codex-context/01-overview.md` | Purpose, scope, business rules, I/O. |
-| `codex-context/02-architecture.md` | Flow, modules, configuration, side effects. |
-| `codex-context/03-operations.md` | Setup, run, validate, troubleshoot, safety. |
-| `codex-context/04-decisions.md` | ADRs. |
-| `codex-context/05-backlog.md` | Risks, debt, follow-ups. |
-| `codex-context/06-inventory.md` | This file. |
+| `docs/architecture/overview.md` | Purpose, scope, business rules, I/O. |
+| `docs/architecture/components.md` | Flow, modules, configuration, side effects. |
+| `docs/architecture/operations.md` | Setup, run, validate, troubleshoot, safety. |
+| `docs/architecture/decisions.md` | ADRs. |
+| `docs/project/backlog.md` | Risks, debt, follow-ups. |
+| `docs/project/inventory.md` | This file. |
 | `docs/superpowers/specs/2026-07-28-documentation-alignment-design.md` | Approved design for the restructure. |
 | `docs/superpowers/plans/2026-07-28-documentation-alignment.md` | Implementation plan. |
 | `docs/reference/API_Softdesk_Documentacao_v1_30.pdf` | External API reference. |
@@ -133,6 +132,7 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 | Softdesk | `${SOFTDESK_API_BASE_URL}` (default `https://mainhardt.soft4.com.br/api/api.php`) | `hash-api` header (`SOFTDESK_HASH_API`) | `src/services/softdesk/config.js` |
 | OpenAI | `https://api.openai.com/v1/chat/completions` | `Authorization: Bearer ${OPENAI_API_KEY}` | `src/services/classification/providers/openai.js` |
 | Google Gemini | `https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent` | `x-goog-api-key: ${GOOGLE_API_KEY}` (fallback `GEMINI_API_KEY`) | `src/services/classification/providers/gemini.js` |
+| DeepSeek | `https://api.deepseek.com/chat/completions` | `Authorization: Bearer ${DEEPSEEK_API_KEY}` | `src/services/classification/providers/deepseek.js` |
 
 ## npm scripts
 

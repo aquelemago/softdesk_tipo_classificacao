@@ -1,4 +1,4 @@
-# 03 — Operations
+# Operations
 
 ## Setup
 
@@ -39,9 +39,9 @@ For any of the rows marked *Yes*, confirm `DRY_RUN=true` and `AUTO_SCHEDULE_ENAB
 
 ## Variables at a glance
 
-See [`.env.example`](.env.example) for the canonical list and defaults. The names below match the keys read by the code; values are intentionally omitted here.
+See [`.env.example`](../.env.example) for the canonical list and defaults. The file is now organized into clear sections: **Minimum Required Configurations** (provider selection and API keys), **Optional Configurations** (model selection, safety modes, server settings, scheduling), and **Softdesk Integration** (API base URL). The names below match the keys read by the code; values are intentionally omitted here.
 
-- LLM providers: `OPENAI_API_KEY`, `OPENAI_MODEL`, `GOOGLE_API_KEY`, `GEMINI_API_KEY`, `GOOGLE_GEMINI_MODEL`, `CLASSIFICADOR_PROVIDER`.
+- LLM providers: `OPENAI_API_KEY`, `OPENAI_MODEL`, `GOOGLE_API_KEY`, `GEMINI_API_KEY`, `GOOGLE_GEMINI_MODEL`, `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`, `CLASSIFICADOR_PROVIDER`.
 - Gemini throttling: `GOOGLE_GEMINI_RPM`, `GOOGLE_GEMINI_RPD`, `GOOGLE_GEMINI_MIN_INTERVAL_MS`, `GOOGLE_GEMINI_QUOTA_FILE`, `GOOGLE_GEMINI_MAX_RETRIES`, `GOOGLE_GEMINI_BACKOFF_BASE_MS`, `GOOGLE_GEMINI_BACKOFF_MAX_MS`.
 - Runtime safety: `DRY_RUN`.
 - Server: `PORT`, `AUTO_SCHEDULE_ENABLED`, `AUTO_SCHEDULE_LIMIT`.
@@ -62,7 +62,7 @@ See [`.env.example`](.env.example) for the canonical list and defaults. The name
 - `SOFTDESK_HASH_API nao configurado no ambiente` — `.env` is missing `SOFTDESK_HASH_API`. Set it before running anything real (`src/services/softdesk/config.js:5-10`).
 - `Limite diario local do Gemini atingido` — the local quota file shows today's count at or above `GOOGLE_GEMINI_RPD`. Reset or raise the limit (`src/services/classification/providers/gemini.js:98-108`).
 - Cron firing despite attempts to disable it — confirm the value is exactly `"false"`; `AUTO_SCHEDULE_ENABLED=0`, `"no"`, or absence all leave it enabled (`server/cron.js:39`).
-- `Provider de classificacao nao reconhecido` — `CLASSIFICADOR_PROVIDER` is something other than `openai`, `google`, or `gemini` (`src/services/classification/providers/openai.js:10`).
+- `Provider de classificacao nao reconhecido` — `CLASSIFICADOR_PROVIDER` is something other than `openai`, `google`, `gemini`, or `deepseek` (`src/services/classification/classify.js:23`).
 - Tests timing out — Gemini tests share module-level queues. Run them with the `--test-concurrency=1` flag if needed.
 
 ## Deploy

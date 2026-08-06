@@ -1,16 +1,16 @@
-# 02 — Architecture
+# Architecture
 
 ## End-to-end flow
 
 ```
-Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini
+Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini/DeepSeek
   --> parser + static ID mapping --> payload --> DRY_RUN gate --> Softdesk PUT
 ```
 
 1. `main.js` calls `getChamadosAbertos(limit)` to fetch open tickets.
 2. For each ticket, `buscarDetalhesChamado(codigo)` fetches the detail; only tickets whose `tipo_chamado.descricao` normalizes to `nao classificado` are returned.
 3. The detail is sanitized and shaped into the prompt by `buildPromptClassificacao` (src/services/classification/prompt.js).
-4. The configured provider (`CLASSIFICADOR_PROVIDER`) is invoked: `chamarOpenAI` (src/services/classification/providers/openai.js) or `chamarGoogleGemini` (src/services/classification/providers/gemini.js).
+4. The configured provider (`CLASSIFICADOR_PROVIDER`) is invoked: `chamarOpenAI` (src/services/classification/providers/openai.js), `chamarGoogleGemini` (src/services/classification/providers/gemini.js), or `chamarDeepSeek` (src/services/classification/providers/deepseek.js).
 5. The response is parsed as JSON with a `TIPO|PRIORIDADE` fallback (`parseClassificacaoOpenAI` in src/services/classification/parser.js).
 6. `mapearClassificacaoSoftdesk` translates the text answer to static IDs (src/services/classification/mapping.js).
 7. `montarPayloadAtualizacao` builds the Softdesk `PUT` body (src/services/classification/mapping.js).
@@ -59,6 +59,7 @@ Softdesk list --> ticket detail gate --> sanitization --> OpenAI/Gemini
 | `src/services/classification/mapping.js` | Maps classification text to Softdesk numeric IDs, builds update payload. |
 | `src/services/classification/providers/openai.js` | OpenAI API client. |
 | `src/services/classification/providers/gemini.js` | Google Gemini API client with quota and retry/backoff logic. |
+| `src/services/classification/providers/deepseek.js` | DeepSeek API client. |
 
 ### Domain
 
@@ -116,12 +117,12 @@ Key behaviour:
 
 - `DRY_RUN` is compared with `=== 'true'`; only the literal string `"true"` disables writes.
 - `AUTO_SCHEDULE_ENABLED` is compared with `!== 'false'`; only the literal string `"false"` disables the cron.
-- `CLASSIFICADOR_PROVIDER` is case-folded and accepts `openai`, `google`, `gemini`.
+- `CLASSIFICADOR_PROVIDER` is case-folded and accepts `openai`, `google`, `gemini`, `deepseek`.
 - `GOOGLE_GEMINI_QUOTA_FILE` defaults to `runtime/gemini-quota-usage.json` relative to the project.
 - Gemini throttling defaults: `10` RPM, `20` RPD, `3` retries, backoff base `2000` ms, max `30000` ms.
 
 ## Side effects
 
-- Network calls: Softdesk list, Softdesk detail, Softdesk `PUT`, OpenAI `chat/completions`, Google Gemini `generateContent`.
+- Network calls: Softdesk list, Softdesk detail, Softdesk `PUT`, OpenAI `chat/completions`, Google Gemini `generateContent`, DeepSeek `chat/completions`.
 - Local writes: weekly log file under `logs/`, Gemini quota file under `runtime/` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points), runtime spawn of `node main.js` from `server/httpEndpoints.js` and `server/cron.js`.
 - Process: `node-cron` schedules a job in `America/Sao_Paulo`.

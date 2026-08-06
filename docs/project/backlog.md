@@ -1,6 +1,6 @@
-# 05 — Backlog
+# Backlog
 
-Risks, technical debt, and follow-ups. Each item lists the evidence and the suggested next move. Items here are not implemented and should not be assumed by readers of `01-overview.md` or `02-architecture.md`.
+Risks, technical debt, and follow-ups. Each item lists the evidence and the suggested next move. Items here are not implemented and should not be assumed by readers of `overview.md` or `components.md`.
 
 ## Operational risks
 
@@ -16,6 +16,7 @@ Risks, technical debt, and follow-ups. Each item lists the evidence and the sugg
 - **No tests for `main.js`.** `DRY_RUN=true` coverage is missing; the pipeline integration is only validated through manual runs.
 - **No tests for `server.js`.** Cron scheduling, WebSocket lifecycle, log rotation, and HTTP endpoints are uncovered.
 - **No tests for Softdesk gateways with mocked fetch.** `src/services/softdesk/tickets.js`, `src/services/softdesk/types.js`, and `src/softdesk/retornaChamadosAbertos.js` rely on `node-fetch` directly with no test seam.
+- **No tests for DeepSeek provider.** `src/services/classification/providers/deepseek.js` is not covered by the existing test suite (`tests/classificador_openai.test.js`). Suggested move: extend tests to include DeepSeek with mocked fetch.
 - **WebSocket has no reconnection backoff.** `public/app.js:30` reconnects every 5 seconds with no jitter and no max attempts. Suggested move: add jitter and an upper bound.
 
 ## Documentation debt

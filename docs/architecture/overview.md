@@ -1,12 +1,12 @@
-# 01 — Overview
+# Overview
 
 ## Purpose
 
-The Softdesk Ticket Type Classifier automates the triage of open Softdesk tickets by asking an LLM (OpenAI or Google Gemini) to assign a `tipo` (type) and a `prioridade` (priority), then writing the result back to Softdesk through its REST API. A small Express server exposes the operation through a web UI, internal HTTP endpoints, and a 15-minute cron loop.
+The Softdesk Ticket Type Classifier automates the triage of open Softdesk tickets by asking an LLM (OpenAI, Google Gemini, or DeepSeek) to assign a `tipo` (type) and a `prioridade` (priority), then writing the result back to Softdesk through its REST API. A small Express server exposes the operation through a web UI, internal HTTP endpoints, and a 15-minute cron loop.
 
 ## Scope
 
-In scope:
+### In scope:
 
 - Pulling open tickets whose current type normalizes to `nao classificado`.
 - Sanitizing HTML, building the prompt, calling the LLM, parsing the response.
@@ -14,7 +14,7 @@ In scope:
 - Serving a static UI, a WebSocket log stream, and `POST /run-main` and `POST /clear-logs`.
 - Running the pipeline automatically every 15 minutes when `AUTO_SCHEDULE_ENABLED` is not exactly `"false"`.
 
-Out of scope:
+### Out of scope:
 
 - Authentication on internal HTTP endpoints.
 - Validating the static Softdesk type and priority IDs against live data.
