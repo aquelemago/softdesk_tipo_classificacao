@@ -1,13 +1,7 @@
 const fetch = require('node-fetch');
-const { log, logSeparator } = require('../utils/logger');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('./softdeskConfig');
-
-function normalizarTexto(valor) {
-  return String(valor || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-}
+const { log, logSeparator } = require('../src/utils/logger');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../src/services/softdesk/config');
+const { mensagemSucesso } = require('../src/utils/mensagem');
 
 async function listarPrioridades() {
   try {
@@ -25,7 +19,7 @@ async function listarPrioridades() {
     log(`Mensagem: ${data.mensagem}`);
     logSeparator();
 
-    if (response.status === 200 && normalizarTexto(data.mensagem).includes('requisicao realizada com sucesso')) {
+    if (response.status === 200 && mensagemSucesso(data.mensagem)) {
       if (Array.isArray(data.objeto)) {
         log(`Encontradas ${data.objeto.length} prioridades:`);
         logSeparator();

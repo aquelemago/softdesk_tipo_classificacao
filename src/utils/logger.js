@@ -60,7 +60,7 @@ function ensureLogFileForWeek(logDir, date = new Date()) {
   return filePath;
 }
 
-const LOG_DIR = path.join(__dirname, '../logs');
+const LOG_DIR = path.join(__dirname, '../../logs');
 let LOG_FILE = ensureLogFileForWeek(LOG_DIR);
 
 function log(message, type = 'info') {
@@ -86,10 +86,8 @@ function logSeparator() {
   log('-'.repeat(80));
 }
 
-function stripHtml(html) {
-  return String(html).replace(/<[^>]+>/g, '');
+function initLogger() {
+  cleanOldLogs(LOG_DIR);
 }
 
-cleanOldLogs(LOG_DIR);
-
-module.exports = { log, logSeparator, stripHtml, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek };
+module.exports = { log, logSeparator, ensureLogFileForWeek, cleanOldLogs, getLogFileNameForWeek, initLogger };

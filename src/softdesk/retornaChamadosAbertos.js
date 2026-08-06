@@ -1,17 +1,8 @@
 const fetch = require('node-fetch');
-const { log, logSeparator, stripHtml } = require('../utils/logger');
-const { buildSoftdeskUrl, getSoftdeskHeaders } = require('./softdeskConfig');
-
-function normalizarTexto(valor) {
-  return String(valor || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-}
-
-function mensagemSucesso(mensagem) {
-  return normalizarTexto(mensagem).includes('requisicao realizada com sucesso');
-}
+const { log, logSeparator } = require('../utils/logger');
+const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../services/softdesk/config');
+const { normalizarTexto, mensagemSucesso } = require('../utils/mensagem');
+const { stripHtml } = require('../utils/text');
 
 async function buscarDetalhesChamado(codigo) {
   try {

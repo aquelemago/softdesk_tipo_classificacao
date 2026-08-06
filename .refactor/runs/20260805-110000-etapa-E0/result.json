@@ -1,0 +1,52 @@
+﻿{
+    "stageId":  "E0",
+    "name":  "Anchor baseline + establish folder architecture",
+    "phase":  "preparation",
+    "startedAt":  "2026-08-05T11:00:00",
+    "completedAt":  "2026-08-05T11:17:00",
+    "outcome":  "success",
+    "previousSha":  "84d07f5899d15f8cc2ba65c8ae1b3dbf89b27c90",
+    "validations":  {
+                        "validate-imports":  "PASS (0 broken)",
+                        "npm test":  "PASS 16/16",
+                        "main-dry-run":  "PASS (boot OK, processou 20 chamados)"
+                    },
+    "changes":  {
+                    "filesMoved":  [
+                                       "utils/logger.js -\u003e src/utils/logger.js (ajustado __dirname ../logs -\u003e ../../logs)",
+                                       "src/utils/texto.js -\u003e src/utils/text.js (rename padronizacao)"
+                                   ],
+                    "importsUpdated":  [
+                                           "main.js: ./utils/logger -\u003e ./src/utils/logger; ./src/utils/texto -\u003e ./src/utils/text",
+                                           "server.js: ./utils/logger -\u003e ./src/utils/logger",
+                                           "scripts/listarPrioridades.js: ../utils/logger -\u003e ../src/utils/logger",
+                                           "scripts/retornaChamadosSemTipo.js: ../utils/logger -\u003e ../src/utils/logger",
+                                           "src/softdesk/retornaChamadosAbertos.js: ../../utils/logger -\u003e ../utils/logger; ../../src/utils/texto -\u003e ../utils/text",
+                                           "utils/classificador_openai.js: ../src/utils/texto -\u003e ../src/utils/text"
+                                       ],
+                    "foldersCreated":  [
+                                           "src/config/",
+                                           "src/domain/",
+                                           "src/services/classification/providers/",
+                                           "src/services/softdesk/"
+                                       ],
+                    "notMoved":  [
+                                     "utils/classificador_openai.js (sera splitado em E1-E7)",
+                                     "src/softdeskConfig.js, src/editarChamado.js, src/listarTiposChamado.js, src/softdesk/* (reorganizacao semantica fica para E8)"
+                                 ]
+                },
+    "skills":  [
+                   "file-move",
+                   "file-write",
+                   "import-update",
+                   "find-references",
+                   "validate-imports",
+                   "validate-structure",
+                   "git-status",
+                   "git-diff",
+                   "test-runner",
+                   "commit-manager",
+                   "progress-update"
+               ],
+    "notes":  "E0 estabeleceu pasta-alvo src/utils/ e moveu logger + text. Softdesk e classificador_openai permanecem no lugar; serao reorganizados em E8 e E1-E7."
+}

@@ -15,21 +15,60 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 
 ## Source modules
 
-| Path | Role |
-| --- | --- |
-| `src/softdeskConfig.js` | Softdesk base URL and headers. |
-| `src/editarChamado.js` | `PUT /chamado`. |
-| `src/test-retorna-ultimos-chamados-abertos.js` | List open tickets + gate on `nao classificado`. |
-| `src/listarTiposChamado.js` | `GET /tipo-de-chamado`. |
-| `src/test-listar-prioridades.js` | `GET /prioridade`. |
-| `src/test-retorna-chamados-sem-tipo.js` | `GET /chamado?RetornaChamadosSemTipo`. |
-
-## Utilities
+### Services - Softdesk Gateways
 
 | Path | Role |
 | --- | --- |
-| `utils/classificador_openai.js` | Prompt, parser, static mapping, OpenAI + Gemini providers, Gemini throttling. |
-| `utils/logger.js` | Weekly rotating logs under `logs/`, colorized output, `stripHtml`. |
+| `src/services/softdesk/config.js` | Softdesk base URL and headers. |
+| `src/services/softdesk/tickets.js` | `PUT /chamado`. |
+| `src/services/softdesk/types.js` | `GET /tipo-de-chamado`. |
+| `src/softdesk/retornaChamadosAbertos.js` | List open tickets + gate on `nao classificado`. |
+
+### Scripts
+
+| Path | Role |
+| --- | --- |
+| `scripts/listarPrioridades.js` | `GET /prioridade`. |
+| `scripts/retornaChamadosSemTipo.js` | `GET /chamado?RetornaChamadosSemTipo`. |
+
+### Services - Classification
+
+| Path | Role |
+| --- | --- |
+| `src/services/classification/classify.js` | Main orchestrator: invokes provider, parses response, maps to Softdesk IDs. |
+| `src/services/classification/prompt.js` | Builds the classification prompt and shapes ticket input. |
+| `src/services/classification/parser.js` | Text normalization, type/priority parsing, JSON extraction. |
+| `src/services/classification/mapping.js` | Maps classification text to Softdesk numeric IDs, builds update payload. |
+| `src/services/classification/providers/openai.js` | OpenAI API client. |
+| `src/services/classification/providers/gemini.js` | Google Gemini API client with quota and retry/backoff logic. |
+
+### Domain
+
+| Path | Role |
+| --- | --- |
+| `src/domain/constants.js` | Classification domain constants: TIPOS, PRIORIDADES, CODIGO_TIPO_CHAMADO, CODIGO_PRIORIDADE, TIPO_ALIASES, PRIORIDADE_ALIASES. |
+
+### Utilities
+
+| Path | Role |
+| --- | --- |
+| `src/utils/logger.js` | Weekly rotating logs under `logs/`, colorized output. |
+| `src/utils/text.js` | Canonical `stripHtml` implementation (safe version). |
+| `src/utils/mensagem.js` | Text normalization and success message detection. |
+
+### Legacy Facade
+
+| Path | Role |
+| --- | --- |
+| `utils/classificador_openai.js` | Facade for backward compatibility with tests; re-exports all public API from the new classification modules. |
+
+### Server Modules
+
+| Path | Role |
+| --- | --- |
+| `server/cron.js` | Cron job setup and automatic main.js execution. |
+| `server/httpEndpoints.js` | HTTP POST endpoints: /run-main, /clear-logs. |
+| `server/logBroadcaster.js` | WebSocket server setup and log broadcasting. |
 
 ## Frontend
 
@@ -79,9 +118,9 @@ An auditable snapshot of files, scripts, integrations and Git state at the time 
 
 | Service | Endpoint | Auth | Source of truth |
 | --- | --- | --- | --- |
-| Softdesk | `${SOFTDESK_API_BASE_URL}` (default `https://mainhardt.soft4.com.br/api/api.php`) | `hash-api` header (`SOFTDESK_HASH_API`) | `src/softdeskConfig.js` |
-| OpenAI | `https://api.openai.com/v1/chat/completions` | `Authorization: Bearer ${OPENAI_API_KEY}` | `utils/classificador_openai.js:445-461` |
-| Google Gemini | `https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent` | `x-goog-api-key: ${GOOGLE_API_KEY}` (fallback `GEMINI_API_KEY`) | `utils/classificador_openai.js:471-512` |
+| Softdesk | `${SOFTDESK_API_BASE_URL}` (default `https://mainhardt.soft4.com.br/api/api.php`) | `hash-api` header (`SOFTDESK_HASH_API`) | `src/services/softdesk/config.js` |
+| OpenAI | `https://api.openai.com/v1/chat/completions` | `Authorization: Bearer ${OPENAI_API_KEY}` | `src/services/classification/providers/openai.js` |
+| Google Gemini | `https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent` | `x-goog-api-key: ${GOOGLE_API_KEY}` (fallback `GEMINI_API_KEY`) | `src/services/classification/providers/gemini.js` |
 
 ## npm scripts
 

@@ -1,0 +1,21 @@
+﻿{
+  "stageId": "E3",
+  "startedAt": "2026-08-04T19:30:00Z",
+  "finishedAt": "2026-08-05T09:56:01Z",
+  "previousSha": "b3f792469f58a6fd461df42d72ad85c2e43320e3",
+  "skillsLoaded": ["file-read","file-write","text-diff","strip-html-compare","dry-run-runner","import-update","find-references","validate-imports","git-status","git-diff","test-runner","commit-manager","progress-update","doc-sync"],
+  "newModules": ["src/utils/texto.js"],
+  "validations": [
+    {"name":"git-status","passed":true},
+    {"name":"validate-imports","passed":true,"summary":"16 OK, 11 external, 0 FAIL"},
+    {"name":"strip-html-compare","passed":true,"note":"20 amostras sinteticas - 9 identicas, 11 divergentes (3 lixo removido, 8 melhorias), 0 perda info util"},
+    {"name":"no-stripHtml-in-logger","passed":true}
+  ],
+  "tests": [
+    {"name":"npm test","status":"pass","exit":0,"passed":16,"failed":0,"durationMs":244}
+  ],
+  "observations": [
+    "Derivado direto: src/softdesk/retornaChamadosAbertos.js (fora de filesInvolved[] mas importava stripHtml do logger). Atualizado para importar de ../../src/utils/texto.",
+    "tests/classificador_openai.test.js nao tocado; fachada stripHtmlSeguro preservada em utils/classificador_openai.js:549."
+  ]
+}
