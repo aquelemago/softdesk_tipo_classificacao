@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const { log, logSeparator } = require('../utils/logger');
 const { buildSoftdeskUrl, getSoftdeskHeaders } = require('../services/softdesk/config');
-const { normalizarTexto, mensagemSucesso } = require('../../utils/mensagem');
+const { normalizarTexto, mensagemSucesso } = require('../utils/mensagem');
 const { stripHtml } = require('../utils/text');
 
 async function buscarDetalhesChamado(codigo) {
