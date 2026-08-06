@@ -53,7 +53,7 @@ Out of scope:
 - `PUT /chamado` with the new `tipo_chamado.codigo` and `prioridade.codigo`. `src/services/softdesk/tickets.js:4-13`.
 - A weekly log file under `logs/log-chamados-YYYY-MM-DD_YYYY-MM-DD.txt`. `src/utils/logger.js:22-25`, `src/utils/logger.js:63-77`.
 - Real-time log lines over the WebSocket at `/`. `server/logBroadcaster.js:20-27`, `server/logBroadcaster.js:38-47`.
-- A local Gemini quota file at `runtime/gemini-quota-usage.json` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points). `src/services/classification/providers/gemini.js:37`, `src/services/classification/providers/gemini.js:313-316`.
+- A local Gemini quota file at `runtime/gemini-quota-usage.json` (or wherever `GOOGLE_GEMINI_QUOTA_FILE` points). `src/services/classification/providers/gemini.js:37`, `src/services/classification/providers/gemini.js:100-105`.
 
 ## Side effects
 

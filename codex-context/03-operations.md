@@ -55,12 +55,12 @@ See [`.env.example`](.env.example) for the canonical list and defaults. The name
 - The cron expression is `*/15 * * * *` in `America/Sao_Paulo` (`server/cron.js:43-59`).
 - Files in `src/` whose name starts with `test-` look like tests but make real Softdesk API requests when executed.
 - `dotenv` is loaded with `quiet: true` (`server.js:2`, `main.js:2`, `src/services/softdesk/config.js:1`).
-- The Gemini provider enforces a local daily quota via `runtime/gemini-quota-usage.json`; the file is created on first write (`utils/classificador_openai.js:313-316`).
+- The Gemini provider enforces a local daily quota via `runtime/gemini-quota-usage.json`; the file is created on first write (`src/services/classification/providers/gemini.js:100-140`).
 
 ## Troubleshooting
 
-- `SOFTDESK_HASH_API nao configurado no ambiente` — `.env` is missing `SOFTDESK_HASH_API`. Set it before running anything real (`src/softdeskConfig.js:12-14`).
-- `Limite diario local do Gemini atingido` — the local quota file shows today's count at or above `GOOGLE_GEMINI_RPD`. Reset or raise the limit (`utils/classificador_openai.js:330-336`).
+- `SOFTDESK_HASH_API nao configurado no ambiente` — `.env` is missing `SOFTDESK_HASH_API`. Set it before running anything real (`src/services/softdesk/config.js:5-10`).
+- `Limite diario local do Gemini atingido` — the local quota file shows today's count at or above `GOOGLE_GEMINI_RPD`. Reset or raise the limit (`src/services/classification/providers/gemini.js:98-108`).
 - Cron firing despite attempts to disable it — confirm the value is exactly `"false"`; `AUTO_SCHEDULE_ENABLED=0`, `"no"`, or absence all leave it enabled (`server/cron.js:39`).
 - `Provider de classificacao nao reconhecido` — `CLASSIFICADOR_PROVIDER` is something other than `openai`, `google`, or `gemini` (`src/services/classification/providers/openai.js:10`).
 - Tests timing out — Gemini tests share module-level queues. Run them with the `--test-concurrency=1` flag if needed.

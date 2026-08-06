@@ -12,7 +12,7 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 
 - **Context:** the original implementation targeted OpenAI; Gemini was added later with quota and retry controls.
 - **Decision:** keep OpenAI as the default (`src/services/classification/providers/openai.js:10`) and treat `google` / `gemini` as first-class providers with rate limiting.
-- **Consequences:** every code path must continue to handle both providers; Gemini carries its own local daily quota and retry/backoff logic (`src/services/classification/providers/gemini.js:50-120`, `src/services/classification/providers/gemini.js:150-200`).
+- **Consequences:** every code path must continue to handle both providers; Gemini carries its own local daily quota and retry/backoff logic (`src/services/classification/providers/gemini.js:50-120`, `src/services/classification/providers/gemini.js:150-212`).
 
 ## ADR-003 — JSON prompt with `TIPO|PRIORIDADE` fallback
 
@@ -41,7 +41,7 @@ Lightweight ADRs. Each entry follows `Context → Decision → Consequences`. Da
 ## ADR-007 — Local Gemini daily quota and retry policy
 
 - **Context:** the Gemini free tier has hard daily and per-minute limits; the API surfaces `retryDelay` and `Retry-After` hints.
-- **Decision:** track daily usage in `runtime/gemini-quota-usage.json`, space requests by the RPM-derived interval, and parse both `Retry-After` and Gemini `retryDelay` hints (`src/services/classification/providers/gemini.js:100-140`, `src/services/classification/providers/gemini.js:150-200`).
+- **Decision:** track daily usage in `runtime/gemini-quota-usage.json`, space requests by the RPM-derived interval, and parse both `Retry-After` and Gemini `retryDelay` hints (`src/services/classification/providers/gemini.js:100-140`, `src/services/classification/providers/gemini.js:150-212`).
 - **Consequences:** the local file is part of runtime state and is intentionally git-ignored; retry behaviour is covered by tests (`tests/classificador_openai.test.js:205-346`).
 
 ## ADR-008 — Unauthenticated internal HTTP endpoints

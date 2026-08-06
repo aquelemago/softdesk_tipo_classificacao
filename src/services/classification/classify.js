@@ -1,6 +1,7 @@
 const { resolverProvider } = require('./providers/gemini');
 const { chamarOpenAI } = require('./providers/openai');
 const { chamarGoogleGemini } = require('./providers/gemini');
+const { chamarDeepSeek } = require('./providers/deepseek');
 const { buildPromptClassificacao, montarChamadoEntrada } = require('./prompt');
 const { parseClassificacaoOpenAI } = require('./parser');
 const { mapearClassificacaoSoftdesk } = require('./mapping');
@@ -16,6 +17,8 @@ async function classificarChamadoOpenAI(tituloOuChamado, descricao, contexto = '
     resposta = await chamarGoogleGemini(prompt, chamado, fetchImpl, options);
   } else if (provider === 'openai') {
     resposta = await chamarOpenAI(prompt, chamado, fetchImpl, options);
+  } else if (provider === 'deepseek') {
+    resposta = await chamarDeepSeek(prompt, chamado, fetchImpl, options);
   } else {
     throw new Error(`Provider de classificacao nao reconhecido: ${provider}`);
   }

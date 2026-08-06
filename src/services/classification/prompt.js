@@ -10,7 +10,6 @@ function buildPromptClassificacao(chamado) {
     status: String(chamado.status || '').trim(),
     tipoAtual: String(chamado.tipoAtual || '').trim()
   };
-
   return `Classifique o chamado Softdesk retornando somente JSON valido.
 
 Enums permitidos:
